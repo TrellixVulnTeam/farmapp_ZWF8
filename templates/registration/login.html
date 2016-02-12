@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        body, html{
+            background-color: #f7f7f7;
+        }
+        .login-box{
+            width: 35%;
+            margin: 0 auto;
+            margin-top: 10%;
+        }
+
+        .login .form-group {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .login-box > .head {
+            background-color: #073c53;
+            padding: 15px 20px;
+            border-top-right-radius: 4px;
+            border-top-left-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .login-box > .body {
+            padding: 20px;
+            border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #ddd;
+            border-top: 0;
+            background: #fff;
+        }
+
+        .login-box > .body h4 {
+            margin-bottom: 15px;
+            margin-top:0;
+        }
+
+        .login .alert {
+            width: 35%;
+            position: relative;
+            top: 80px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+{% block content %}
+{% load staticfiles %}
+<div class="container login">
+{% if form.errors %}
+<div name="next" class="alert alert-danger text-center">
+                    <p>Your username and password didn't match. Please try again.</p>
+                </div>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <div name="next" class="alert alert-danger text-center">
+                    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+                </div>
+    {% else %}
+    <div name="next" class="alert alert-danger text-center">
+                    <p>Please login to see this page.</p>
+                </div>
+    
+    {% endif %}
+{% endif %}
+
+<form class="form-horizontal" name="LoginForm" method="post" action="{% url 'login' %}">
+{% csrf_token %}
+        <div class="login-box">
+                    <div class="head">
+                        <div class="logo">
+                            <img src="{% static "images/logo.png" %}" width="128" height="22" alt="Spotlight" />
+                        </div>
+                    </div>
+                    <div class="body">
+                        <h4>Login</h4>
+                        <form name="userForm">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username"  placeholder="Username" class="form-control" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                {# Assumes you setup the password_reset view in your URLconf #}
+                            <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                              </div>
+                              <button type="submit" class="btn btn-primary btn-lg pull-right">Login</button>
+                              <input type="hidden" name="next" value="{{ next }}" />
+                              <div class="clearfix"></div>
+                        </form>
+                    </div>
+                    </div>
+
+            </form>
+            {% endblock %}
+            </div>
+
+<!-- <table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form> -->
+
+
+</div>
+</body>
+</html>
