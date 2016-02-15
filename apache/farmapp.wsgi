@@ -4,14 +4,14 @@ import site
 
 sys.stdout = sys.stderr
 
-new_path = '/var/projects/farmapp/farmenv/lib/python3.4/site-packages'
+new_path = '/var/www/farmapp/farmenv/lib/python3.4/site-packages'
 
 prev_sys_path = list(sys.path)
 # add the site-packages of our virtualenv as a site dir
 site.addsitedir(new_path)
 # add the app's directory to the PYTHONPATH
-sys.path.append('/var/projects/farmapp/farmapp')
-sys.path.append('/var/projects/farmapp')
+sys.path.append('/var/www/farmapp/farmapp')
+sys.path.append('/var/www/farmapp')
 
 # reorder sys.path so new directories from the addsitedir show up first
 new_sys_path = [p for p in sys.path if p not in prev_sys_path]

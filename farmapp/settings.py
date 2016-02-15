@@ -119,7 +119,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    '/var/projects/farmapp/static/',
+    '/var/www/farmapp/static/',
 ]
 #print(STATIC_ROOT)
 #print(STATICFILES_DIRS)
