@@ -39,6 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'farmapp',
     'api',
+    'fruit',
+    'root',
+    'seed',
 )
 
 MIDDLEWARE_CLASSES = (
