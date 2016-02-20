@@ -1,9 +1,10 @@
 from django.db import models
-from farmapp.root.models import *
-from farmapp.api import *
+from django.contrib.auth.models import User
+from root.models import *
+from api.models import *
 
 # Create your models here.
-class Transaction(models.Model):
+class Seed_Transaction(models.Model):
     description = models.TextField()
     farm = models.ForeignKey(Farming)
     day = models.DateField()
@@ -17,5 +18,5 @@ class Fund(models.Model):
     description = models.TextField()
     farm = models.ForeignKey(Farming)
     price = models.FloatField()
-    transaction = models.ForeignKey(Transaction)
+    transaction = models.ForeignKey(Seed_Transaction)
 

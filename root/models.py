@@ -94,7 +94,7 @@ class Crop(models.Model):
 class Crop_Type(models.Model):
     type_name = models.CharField(
         max_length=256, null=True)
-    crop = .ForeignKey(Crop)
+    crop = models.ForeignKey(Crop)
     specialty = models.CharField(
         max_length=256, null=True)
     region_grown = models.CharField(
@@ -105,7 +105,7 @@ class Crop_Type(models.Model):
 class Service_Provider(models.Model):
     company_name = models.CharField(
         max_length=256, null=True)
-    Sector = .ForeignKey(Crop)
+    Sector = models.ForeignKey(Crop)
     specialization = models.CharField(
         max_length=256, null=True)
     contact = models.CharField(

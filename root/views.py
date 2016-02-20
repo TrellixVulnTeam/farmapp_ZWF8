@@ -26,7 +26,7 @@ def get_meta(request):
           "farming_type": "organic",
           "crop_type": "Sonamasuri",
           "crop": "rice",
-          "estimated_weight_per_unit":"20kg"
+          "estimated_weight_per_unit":"20kg",
           "land_details": {
               "total_area": '2',
               "area_unit": 'hector',
@@ -38,14 +38,14 @@ def get_meta(request):
               "longitude":27.00007,
               "address": "near post office",
               "details": "Good yield, organic farm"
-           }
+           },
            "farmer_details":{
               "name": "Narsaiah",
               "full_name": "Bugga Narsaiah",
               "address": "1-6-09/a,near post office",
               "mobile": "234988734",
               "history": "good farmer had been working hard to make living"
-            }
+            },
             "officer_incharge":{
               "name": "suresh",
               "full_name": "suresh ramesh",
@@ -55,4 +55,4 @@ def get_meta(request):
           
             }
         }
-    return Response(resp)
+    return HttpResponse(json.dumps(resp), content_type='application/json')

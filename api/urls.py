@@ -11,7 +11,7 @@ router.register(r'accounts', views.UserView, 'list')
 
 urlpatterns = [
 	url('^', include('django.contrib.auth.urls')),
-	url('^', views.login, name='login'),
+	#url('^', views.login, name='login'),
 	url(r'^viewmap/$',views.load_map),
 	url(r'^api/', include(router.urls)),
 ]

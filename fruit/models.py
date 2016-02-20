@@ -1,9 +1,10 @@
 from django.db import models
-from farmapp.root.models import *
-from farmapp.api import *
+from django.contrib.auth.models import User
+from root.models import *
+from api.models import *
 
 # Create your models here.
-class Transaction(models.Model):
+class Fruit_Transaction(models.Model):
     description = models.TextField()
     farm = models.ForeignKey(Farming)
     day = models.DateField()
@@ -11,5 +12,5 @@ class Transaction(models.Model):
     user = models.ForeignKey(User)
     price = models.FloatField()
     no_of_units_sold = models.IntegerField()
-    yield_ = models.ForeignKey(Yield)
+    yields = models.ForeignKey(Yield)
 
