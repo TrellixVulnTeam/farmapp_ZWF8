@@ -116,7 +116,7 @@ class Service_Provider(models.Model):
 class Farm_Land_Details(models.Model):
     image = models.CharField(
         max_length=256, null=True)
-    total_area = models.IntegerField()
+    total_area = models.FloatField()
     village = models.ForeignKey(Village)
     farmer_id = models.ForeignKey(Farmer_Details)
     date_joining = models.DateField()
@@ -146,7 +146,6 @@ class Transaction_Type(models.Model):
     types = models.CharField(max_length=50, choices=Types)
 
 class Farming(models.Model):
-    total_area = models.IntegerField()
     land = models.ForeignKey(Farm_Land_Details)
     farmer_id = models.ForeignKey(Farmer_Details)
     start_date = models.DateField()
