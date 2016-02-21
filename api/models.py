@@ -1,5 +1,5 @@
 from django.db import models
-from farmapp.root.models import *
+#from farmapp.root.models import *
 
 # Create your models here.
 
