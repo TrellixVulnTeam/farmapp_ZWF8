@@ -12,6 +12,7 @@ from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
@@ -22,15 +23,13 @@ from .permissions import IsStaffOrTargetUser
 def load_map(request):
     return render(request, 'api/view_map.html')
 
- 
- 
-class UserView(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    model = User
 
- 
+class UserView(viewsets.ModelViewSet):
+    queryset = get_user_model().objects
+    serializer_class = UserSerializer
+
     def get_permissions(self):
-        # allow non-authenticated user to create via POST
-        return (AllowAny() if self.request.method == 'POST'
-                else IsStaffOrTargetUser()),
+        if self.request.method == 'POST':
+            self.permission_classes = (AllowAny,)
+
+        return super(UserView, self).get_permissions()
