@@ -25,7 +25,7 @@ def load_map(request):
  
  
 class UserView(viewsets.ModelViewSet):
-    queryset = Account.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     model = User
 
