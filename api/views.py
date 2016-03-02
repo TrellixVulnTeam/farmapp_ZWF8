@@ -25,8 +25,10 @@ def load_map(request):
  
  
 class UserView(viewsets.ModelViewSet):
+    queryset = Account.objects.all()
     serializer_class = UserSerializer
     model = User
+
  
     def get_permissions(self):
         # allow non-authenticated user to create via POST
