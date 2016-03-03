@@ -11,9 +11,104 @@ from django.core.exceptions import ValidationError
 from django.http import *
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
+from rest_framework import exceptions, filters, generics, mixins, status, viewsets
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
+from .models import *
+from .serializer import *
+
+
+class NonDestructiveModelViewSet(viewsets.ModelViewSet):
+
+    def destroy(self, request, *args, **kwargs):
+        raise exceptions.MethodNotAllowed("Delete")
+
+class OfficerViewSet(NonDestructiveModelViewSet):
+
+    """
+    Endpoint: /api/quotes/
+
+    GET: Typical RESTful Response including Pagination.
+
+    `search` query parameter => ?search=<search text>
+
+    PUT & PATCH are available though no validations
+                beyond data types exist on it for now.
+
+    """
+    queryset = Officer_Details.objects.all()
+    serializer_class = OfficerSerializer
+    filter_backends = (filters.SearchFilter,
+                       filters.DjangoFilterBackend, filters.OrderingFilter,)
+    search_fields = ('name',)
+    filter_fields = ('name',)
+    ordering_fields = '__all__'
+
+    def get_queryset(self):
+        """
+            Default:  Send All.
+            unmapped = true => Send filtered.
+        """
+        queryset = super().get_queryset()
+
+        # unmapped = self.request.QUERY_PARAMS.get('unmapped')
+        # include_mapped = False if unmapped == 'true' else True
+        # if include_mapped or self.action == 'detail':
+        #     return queryset
+
+        # mapped_quotes = KPICampaignMinor.objects.exclude(
+        #     status__in=['CNC', 'REJ', 'DEL']
+        # ).values_list('quote', flat=True)
+
+        # # Handle weird error thrown as a result of None included in list
+        # mapped_quotes = [i for i in mapped_quotes if i != None]
+        # queryset = queryset.exclude(id__in=mapped_quotes)
+        return queryset
+
+
+class farmerViewSet(NonDestructiveModelViewSet):
+
+    """
+    Endpoint: /api/quotes/
+
+    GET: Typical RESTful Response including Pagination.
+
+    `search` query parameter => ?search=<search text>
+
+    PUT & PATCH are available though no validations
+                beyond data types exist on it for now.
+
+    """
+    queryset = Farmer_Details.objects.all()
+    serializer_class = FarmerSerializer
+    filter_backends = (filters.SearchFilter,
+                       filters.DjangoFilterBackend, filters.OrderingFilter,)
+    search_fields = ('name',)
+    filter_fields = ('name',)
+    ordering_fields = '__all__'
+
+    def get_queryset(self):
+        """
+            Default:  Send All.
+            unmapped = true => Send filtered.
+        """
+        queryset = super().get_queryset()
+
+        # unmapped = self.request.QUERY_PARAMS.get('unmapped')
+        # include_mapped = False if unmapped == 'true' else True
+        # if include_mapped or self.action == 'detail':
+        #     return queryset
+
+        # mapped_quotes = KPICampaignMinor.objects.exclude(
+        #     status__in=['CNC', 'REJ', 'DEL']
+        # ).values_list('quote', flat=True)
+
+        # # Handle weird error thrown as a result of None included in list
+        # mapped_quotes = [i for i in mapped_quotes if i != None]
+        # queryset = queryset.exclude(id__in=mapped_quotes)
+        return queryset
 
 @csrf_exempt
 @api_view(['GET', 'POST', ])
@@ -95,3 +190,4 @@ def get_meta(request):
       ]
     }
     return HttpResponse(json.dumps(resp), content_type='application/json')
+
