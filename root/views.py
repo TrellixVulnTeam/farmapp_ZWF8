@@ -128,7 +128,7 @@ def get_meta(request):
             "total_area": '2',
             "area_unit": 'hector',
             "village": "ramapuram",
-            "mandal": "thari",
+            "taluk": "thari",
             "district": "Nizamabad",
             "state": "Telangana",
             "latitude": 22.0006,
@@ -164,7 +164,7 @@ def get_meta(request):
             "total_area": '2',
             "area_unit": 'hector',
             "village": "ramapuram",
-            "mandal": "thari",
+            "taluk": "thari",
             "district": "Nizamabad",
             "state": "Telangana",
             "latitude": 23.0006,
@@ -190,4 +190,33 @@ def get_meta(request):
       ]
     }
     return HttpResponse(json.dumps(resp), content_type='application/json')
+
+
+class StateView(viewsets.ReadOnlyModelViewSet):
+
+    queryset = State.objects.all()
+    serializer_class = StateSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name',)
+
+class DistrictView(viewsets.ReadOnlyModelViewSet):
+
+    queryset = District.objects.all()
+    serializer_class = DistrictSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name',)
+
+class TalukView(viewsets.ReadOnlyModelViewSet):
+
+    queryset = Taluk.objects.all()
+    serializer_class = TalukSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name',)
+
+class VillageView(viewsets.ReadOnlyModelViewSet):
+
+    queryset = Village.objects.all()
+    serializer_class = VillageSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name',)
 

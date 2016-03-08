@@ -16,3 +16,23 @@ class OfficerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Officer_Details
         #fields = ('id', 'username')
+
+class StateSerializer(serializers.ModelSerializer)
+
+    class Meta:
+        model = State
+
+class DistrictSerializer(serializers.ModelSerializer)
+
+    class Meta:
+        model = District
+
+class TalukSerializer(serializers.ModelSerializer)
+
+    class Meta:
+        model = Taluk
+
+class VillageSerializer(serializers.ModelSerializer)
+
+    class Meta:
+        model = Village
