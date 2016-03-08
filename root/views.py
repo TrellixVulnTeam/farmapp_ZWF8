@@ -192,31 +192,34 @@ def get_meta(request):
     return HttpResponse(json.dumps(resp), content_type='application/json')
 
 
-class StateView(viewsets.ReadOnlyModelViewSet):
+class StateViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = State.objects.all()
     serializer_class = StateSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('name',)
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    search_fields = ('name',)
 
-class DistrictView(viewsets.ReadOnlyModelViewSet):
+class DistrictViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = District.objects.all()
     serializer_class = DistrictSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('name',)
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    filter_fields = ('state__name',)
+    search_fields = ('name', )
 
-class TalukView(viewsets.ReadOnlyModelViewSet):
+class TalukViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Taluk.objects.all()
     serializer_class = TalukSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('name',)
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    filter_fields = ('state__name','district__name')
+    search_fields = ('name',)
 
-class VillageView(viewsets.ReadOnlyModelViewSet):
+class VillageViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Village.objects.all()
     serializer_class = VillageSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('name',)
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    filter_fields = ('state__name','district__name','taluk__name')
+    search_fields = ('name',)
 
