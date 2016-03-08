@@ -20,10 +20,6 @@ class Command(BaseCommand):
         sheet = book.sheet_by_index(0)
         number_of_lines = sheet.nrows
         report_header_list = []
-        State.objects.all().delete()
-        District.objects.all().delete()
-        Taluk.objects.all().delete()
-        Village.objects.all().delete()
         for header in sheet.row_values(0):
             report_header_list.append(header.lower().replace(' ','_'))
         try:
