@@ -12,7 +12,7 @@ from django.db import models
 #     date_joining = models.DateField()
 #     mobile = models.IntegerField(default=0)
 #     address = models.TextField()
-#     mandal = models.ForeignKey(Mandal)
+#     taluk = models.ForeignKey(Taluk)
 #     state = models.ForeignKey(State)
 #     district = models.ForeignKey(District)
 

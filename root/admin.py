@@ -15,6 +15,6 @@ class DistrictAdmin(admin.ModelAdmin):
 
 admin.site.register(State)
 admin.site.register(District, DistrictAdmin)
-admin.site.register(taluk)
+admin.site.register(Taluk)
 admin.site.register(Village)
 #admin.site.register(Author)
