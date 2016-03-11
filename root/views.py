@@ -215,7 +215,7 @@ class TalukViewSet(viewsets.ReadOnlyModelViewSet):
     filter_fields = ('state__name','district__name')
     search_fields = ('name',)
 
-class VillageViewSet(viewsets.ReadOnlyModelViewSet):
+class VillageViewSet(NonDestructiveModelViewSet):
 
     queryset = Village.objects.all()
     serializer_class = VillageSerializer
