@@ -3,9 +3,9 @@ from .models import *
 
 # Register your models here.
 
-class DistrictAdmin(admin.ModelAdmin):
-    fields = ['name' , 'state' , 'state_name', 'unique_id' ]
-    list_display = ['unique_id', 'state', 'state_name', 'name']
+#class DistrictAdmin(admin.ModelAdmin):
+    #fields = ['name' , 'state' , 'state_name', 'unique_id' ]
+    #list_display = ['unique_id', 'state', 'state_name', 'name']
 
     # def get_name(self, obj):
     #     return obj.state.name
@@ -14,7 +14,7 @@ class DistrictAdmin(admin.ModelAdmin):
     #fields = ('unique_id', 'name', 'state_name')
 
 admin.site.register(State)
-admin.site.register(District, DistrictAdmin)
+admin.site.register(District)#, DistrictAdmin)
 admin.site.register(Taluk)
 admin.site.register(Village)
 #admin.site.register(Author)
