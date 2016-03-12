@@ -15,20 +15,20 @@ class District(models.Model):
         max_length=256, null=True)
     state = models.ForeignKey(State)
 
-class Taluk(models.Model):
-    unique_id = models.CharField(
-        max_length=256, null=True)
-    name = models.CharField(
-        max_length=256, null=True)
-    state = models.ForeignKey(State)
-    district = models.ForeignKey(District)
+# class Taluk(models.Model):
+#     unique_id = models.CharField(
+#         max_length=256, null=True)
+#     name = models.CharField(
+#         max_length=256, null=True)
+#     state = models.ForeignKey(State)
+#     district = models.ForeignKey(District)
 
 class Village(models.Model):
     unique_id = models.CharField(
         max_length=256, null=True)
     name = models.CharField(
         max_length=256, null=True)
-    taluk = models.ForeignKey(Taluk)
+#    taluk = models.ForeignKey(Taluk)
     state = models.ForeignKey(State)
     district = models.ForeignKey(District)
 
@@ -44,7 +44,7 @@ class Officer_Details(models.Model):
     assignee = models.ForeignKey("self")
     mobile = models.IntegerField(default=0)
     address = models.TextField()
-    taluk = models.ForeignKey(Taluk)
+#    taluk = models.ForeignKey(Taluk)
     state = models.ForeignKey(State)
     district = models.ForeignKey(District)
     proof = (
@@ -68,7 +68,7 @@ class Farmer_Details(models.Model):
     assignee = models.ForeignKey("self")
     mobile = models.IntegerField(default=0)
     address = models.TextField()
-    taluk = models.ForeignKey(Taluk)
+#    taluk = models.ForeignKey(Taluk)
     state = models.ForeignKey(State)
     district = models.ForeignKey(District)
     detailed_history = models.TextField()
@@ -123,7 +123,7 @@ class Farm_Land_Details(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     address = models.TextField()
-    taluk = models.ForeignKey(Taluk)
+#    taluk = models.ForeignKey(Taluk)
     state = models.ForeignKey(State)
     district = models.ForeignKey(District)
     crop = models.ForeignKey(Crop)

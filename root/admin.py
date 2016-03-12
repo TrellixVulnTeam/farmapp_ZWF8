@@ -15,6 +15,6 @@ from .models import *
 
 admin.site.register(State)
 admin.site.register(District)#, DistrictAdmin)
-admin.site.register(Taluk)
+#admin.site.register(Taluk)
 admin.site.register(Village)
 #admin.site.register(Author)

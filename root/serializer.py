@@ -27,10 +27,10 @@ class DistrictSerializer(serializers.ModelSerializer):
     class Meta:
         model = District
 
-class TalukSerializer(serializers.ModelSerializer):
+# class TalukSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = Taluk
+#     class Meta:
+#         model = Taluk
 
 class VillageSerializer(serializers.ModelSerializer):
 
