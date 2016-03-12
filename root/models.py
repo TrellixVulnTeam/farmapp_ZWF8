@@ -31,6 +31,7 @@ class Village(models.Model):
     taluk = models.ForeignKey(Taluk)
     state = models.ForeignKey(State)
     district = models.ForeignKey(District)
+    pincode = models.CharField()
 
 class Officer_Details(models.Model):
     name = models.CharField(
