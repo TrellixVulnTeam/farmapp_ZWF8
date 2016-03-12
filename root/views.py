@@ -207,13 +207,13 @@ class DistrictViewSet(viewsets.ReadOnlyModelViewSet):
     filter_fields = ('state__name',)
     search_fields = ('name', )
 
-# class TalukViewSet(viewsets.ReadOnlyModelViewSet):
+class TalukViewSet(viewsets.ReadOnlyModelViewSet):
 
-#     queryset = Taluk.objects.all()
-#     serializer_class = TalukSerializer
-#     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-#     filter_fields = ('state__name','district__name')
-#     search_fields = ('name',)
+    queryset = Taluk.objects.all()
+    serializer_class = TalukSerializer
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    filter_fields = ('state__name','district__name')
+    search_fields = ('name',)
 
 class VillageViewSet(NonDestructiveModelViewSet):
 
