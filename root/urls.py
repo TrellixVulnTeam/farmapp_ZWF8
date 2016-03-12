@@ -8,7 +8,7 @@ router.register(r'officer', views.OfficerViewSet)
 router.register(r'farmer', views.farmerViewSet)
 router.register(r'state', views.StateViewSet)
 router.register(r'district', views.DistrictViewSet)
-router.register(r'taluk', views.TalukViewSet)
+#router.register(r'taluk', views.TalukViewSet)
 router.register(r'village', views.VillageViewSet)
 
 urlpatterns = [
