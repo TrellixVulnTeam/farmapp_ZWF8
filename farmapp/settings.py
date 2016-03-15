@@ -38,13 +38,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-
+    'django_extensions',
+    # 'crispy-forms',
     'farmapp',
     'api',
     'fruit',
     'root',
     'seed',
 )
+
+# CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
