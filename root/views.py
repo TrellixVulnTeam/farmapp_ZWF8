@@ -84,8 +84,8 @@ class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
     serializer_class = FarmLandDetailsSerializer
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
-    search_fields = ('name',)
-    filter_fields = ('name',)
+    search_fields = ('village__name',)
+    filter_fields = ('village__name',)
     ordering_fields = '__all__'
 
     def get_queryset(self):
@@ -97,7 +97,7 @@ class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
 
         return queryset
 
-class FarmingOfficerViewSet(NonDestructiveModelViewSet):
+class FarmingViewSet(NonDestructiveModelViewSet):
 
     """
     Endpoint: /root/farming/
@@ -114,8 +114,8 @@ class FarmingOfficerViewSet(NonDestructiveModelViewSet):
     serializer_class = FarmingSerializer
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
-    search_fields = ('name',)
-    filter_fields = ('name',)
+    search_fields = ('farmer_id__name',)
+    filter_fields = ('farmer_id__name',)
     ordering_fields = '__all__'
 
     def get_queryset(self):
@@ -187,7 +187,7 @@ class YieldViewSet(NonDestructiveModelViewSet):
         return queryset
 
 
-class farmerViewSet(NonDestructiveModelViewSet):
+class FarmerViewSet(NonDestructiveModelViewSet):
 
     """
     Endpoint: /root/farmer/
