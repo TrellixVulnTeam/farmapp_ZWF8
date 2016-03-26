@@ -28,7 +28,7 @@ class NonDestructiveModelViewSet(viewsets.ModelViewSet):
 class OfficerViewSet(NonDestructiveModelViewSet):
 
     """
-    Endpoint: /api/quotes/
+    Endpoint: /root/officer/
 
     GET: Typical RESTful Response including Pagination.
 
@@ -67,11 +67,130 @@ class OfficerViewSet(NonDestructiveModelViewSet):
         # queryset = queryset.exclude(id__in=mapped_quotes)
         return queryset
 
+class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
+
+    """
+    Endpoint: /root/farmland/
+
+    GET: Typical RESTful Response including Pagination.
+
+    `search` query parameter => ?search=<search text>
+
+    PUT & PATCH are available though no validations
+                beyond data types exist on it for now.
+
+    """
+    queryset = Farm_Land_Details.objects.all()
+    serializer_class = FarmLandDetailsSerializer
+    filter_backends = (filters.SearchFilter,
+                       filters.DjangoFilterBackend, filters.OrderingFilter,)
+    search_fields = ('name',)
+    filter_fields = ('name',)
+    ordering_fields = '__all__'
+
+    def get_queryset(self):
+        """
+            Default:  Send All.
+            unmapped = true => Send filtered.
+        """
+        queryset = super().get_queryset()
+
+        return queryset
+
+class FarmingOfficerViewSet(NonDestructiveModelViewSet):
+
+    """
+    Endpoint: /root/farming/
+
+    GET: Typical RESTful Response including Pagination.
+
+    `search` query parameter => ?search=<search text>
+
+    PUT & PATCH are available though no validations
+                beyond data types exist on it for now.
+
+    """
+    queryset = Farming.objects.all()
+    serializer_class = FarmingSerializer
+    filter_backends = (filters.SearchFilter,
+                       filters.DjangoFilterBackend, filters.OrderingFilter,)
+    search_fields = ('name',)
+    filter_fields = ('name',)
+    ordering_fields = '__all__'
+
+    def get_queryset(self):
+        """
+            Default:  Send All.
+            unmapped = true => Send filtered.
+        """
+        queryset = super().get_queryset()
+
+        return queryset
+
+class CropLifeCycleViewSet(NonDestructiveModelViewSet):
+
+    """
+    Endpoint: /root/croplife/
+
+    GET: Typical RESTful Response including Pagination.
+
+    `search` query parameter => ?search=<search text>
+
+    PUT & PATCH are available though no validations
+                beyond data types exist on it for now.
+
+    """
+    queryset = Crop_Life_Cycle.objects.all()
+    serializer_class = CropLifeCycleSerializer
+    filter_backends = (filters.SearchFilter,
+                       filters.DjangoFilterBackend, filters.OrderingFilter,)
+    search_fields = ('farm__id',)
+    filter_fields = ('farm__id',)
+    ordering_fields = '__all__'
+
+    def get_queryset(self):
+        """
+            Default:  Send All.
+            unmapped = true => Send filtered.
+        """
+        queryset = super().get_queryset()
+        return queryset
+
+class YieldViewSet(NonDestructiveModelViewSet):
+
+    """
+    Endpoint: /root/yield/
+
+    GET: Typical RESTful Response including Pagination.
+
+    `search` query parameter => ?search=<search text>
+
+    PUT & PATCH are available though no validations
+                beyond data types exist on it for now.
+
+    """
+    queryset = Yield.objects.all()
+    serializer_class = YieldSerializer
+    filter_backends = (filters.SearchFilter,
+                       filters.DjangoFilterBackend, filters.OrderingFilter,)
+    search_fields = ('farm__id',)
+    filter_fields = ('farm__id',)
+    ordering_fields = '__all__'
+
+    def get_queryset(self):
+        """
+            Default:  Send All.
+            unmapped = true => Send filtered.
+        """
+        queryset = super().get_queryset()
+
+        return queryset
+
 
 class farmerViewSet(NonDestructiveModelViewSet):
 
     """
-    Endpoint: /api/quotes/
+    Endpoint: /root/farmer/
 
     GET: Typical RESTful Response including Pagination.
 
@@ -191,6 +310,40 @@ def get_meta(request):
     }
     return HttpResponse(json.dumps(resp), content_type='application/json')
 
+class CropViewSet(viewsets.ReadOnlyModelViewSet):
+
+    queryset = Crop.objects.all()
+    serializer_class = CropSerializer
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    search_fields = ('name',)
+
+class CropTypeViewSet(viewsets.ReadOnlyModelViewSet):
+
+    queryset = Crop_Type.objects.all()
+    serializer_class = CropTypeSerializer
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    search_fields = ('name',)
+
+class ServiceProviderViewSet(viewsets.ReadOnlyModelViewSet):
+
+    queryset = Service_Provider.objects.all()
+    serializer_class = ServiceProviderSerializer
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    search_fields = ('name',)
+
+class FarmingTypeViewSet(viewsets.ReadOnlyModelViewSet):
+
+    queryset = Farming_Type.objects.all()
+    serializer_class = FarmingTypeSerializer
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    search_fields = ('name',)
+
+class TransactionTypeViewSet(viewsets.ReadOnlyModelViewSet):
+
+    queryset = Transaction_Type.objects.all()
+    serializer_class = TransactionTypeSerializer
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    search_fields = ('name',)
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
 

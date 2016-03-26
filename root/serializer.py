@@ -17,6 +17,51 @@ class OfficerSerializer(serializers.ModelSerializer):
         model = Officer_Details
         #fields = ('id', 'username')
 
+class CropSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Crop
+
+class CropTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Crop_Type
+
+class ServiceProviderSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Service_Provider
+
+class FarmLandDetailsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Farm_Land_Details
+
+class FarmingTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Farming_Type
+
+class TransactionTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Transaction_Type
+
+class FarmingSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Farming
+
+class CropLifeCycleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Crop_Life_Cycle
+
+class YieldSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Yield
+
 class StateSerializer(serializers.ModelSerializer):
 
     class Meta:
