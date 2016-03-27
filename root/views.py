@@ -357,7 +357,7 @@ class DistrictViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = District.objects.all()
     serializer_class = DistrictSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    filter_fields = ('state__name',)
+    filter_fields = ('state__name','state__id')
     search_fields = ('name', )
 
 class TalukViewSet(viewsets.ReadOnlyModelViewSet):
@@ -365,7 +365,7 @@ class TalukViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Taluk.objects.all()
     serializer_class = TalukSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    filter_fields = ('state__name','district__name')
+    filter_fields = ('state__name','district__name', 'state__id','district__id')
     search_fields = ('name',)
 
 class VillageViewSet(NonDestructiveModelViewSet):
@@ -373,6 +373,7 @@ class VillageViewSet(NonDestructiveModelViewSet):
     queryset = Village.objects.all()
     serializer_class = VillageSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    filter_fields = ('state__name','district__name','taluk__name')
+    filter_fields = ('state__name','district__name','taluk__name',
+                    'state__id','district__id','taluk__id')
     search_fields = ('name',)
 
