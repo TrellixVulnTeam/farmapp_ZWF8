@@ -310,40 +310,40 @@ def get_meta(request):
     }
     return HttpResponse(json.dumps(resp), content_type='application/json')
 
-class CropViewSet(viewsets.ReadOnlyModelViewSet):
+class CropViewSet(NonDestructiveModelViewSet):
 
     queryset = Crop.objects.all()
     serializer_class = CropSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    search_fields = ('name',)
+    search_fields = ('crop_name',)
 
-class CropTypeViewSet(viewsets.ReadOnlyModelViewSet):
+class CropTypeViewSet(NonDestructiveModelViewSet):
 
     queryset = Crop_Type.objects.all()
     serializer_class = CropTypeSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    search_fields = ('name',)
+    search_fields = ('type_name',)
 
-class ServiceProviderViewSet(viewsets.ReadOnlyModelViewSet):
+class ServiceProviderViewSet(NonDestructiveModelViewSet):
 
     queryset = Service_Provider.objects.all()
     serializer_class = ServiceProviderSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    search_fields = ('name',)
+    search_fields = ('company_name',)
 
-class FarmingTypeViewSet(viewsets.ReadOnlyModelViewSet):
+class FarmingTypeViewSet(NonDestructiveModelViewSet):
 
     queryset = Farming_Type.objects.all()
     serializer_class = FarmingTypeSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    search_fields = ('name',)
+    search_fields = ('types',)
 
-class TransactionTypeViewSet(viewsets.ReadOnlyModelViewSet):
+class TransactionTypeViewSet(NonDestructiveModelViewSet):
 
     queryset = Transaction_Type.objects.all()
     serializer_class = TransactionTypeSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    search_fields = ('name',)
+    search_fields = ('types',)
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
 
