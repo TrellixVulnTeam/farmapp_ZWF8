@@ -2,7 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 import json
+import os
 
+from django.db import transaction
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -11,6 +13,8 @@ from django.core.exceptions import ValidationError
 from django.http import *
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
+import cgi
+from rest_framework.response import Response
 from rest_framework import exceptions, filters, generics, mixins, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -18,12 +22,20 @@ from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from .serializer import *
+from farmapp.settings import FILE_PATH as path
 
 
 class NonDestructiveModelViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         raise exceptions.MethodNotAllowed("Delete")
+
+def file_upload(path, name, upload_name):
+    form_data = cgi.FieldStorage()
+    file_data = form_data[name].value
+    fp = open(upload_name,'wb')
+    fp.write(file_data)
+    fp.close()
 
 class OfficerViewSet(NonDestructiveModelViewSet):
 
@@ -52,20 +64,22 @@ class OfficerViewSet(NonDestructiveModelViewSet):
             unmapped = true => Send filtered.
         """
         queryset = super().get_queryset()
-
-        # unmapped = self.request.QUERY_PARAMS.get('unmapped')
-        # include_mapped = False if unmapped == 'true' else True
-        # if include_mapped or self.action == 'detail':
-        #     return queryset
-
-        # mapped_quotes = KPICampaignMinor.objects.exclude(
-        #     status__in=['CNC', 'REJ', 'DEL']
-        # ).values_list('quote', flat=True)
-
-        # # Handle weird error thrown as a result of None included in list
-        # mapped_quotes = [i for i in mapped_quotes if i != None]
-        # queryset = queryset.exclude(id__in=mapped_quotes)
         return queryset
+
+    @transaction.atomic
+    def create(self, request, *args, **kwargs):
+        status = 'Success'
+        try:
+            off_detail = Officer_Details.objects.create(**request.data)
+            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
+            file_upload(request, 'image', os.path.join(path, file_name))
+            off_detail['image'] = file_name
+            off_detail.save()
+        except Exception as e:
+            status = 'Error'
+
+        return Response({
+            'status': status})
 
 class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
 
@@ -96,6 +110,21 @@ class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
         queryset = super().get_queryset()
 
         return queryset
+
+    @transaction.atomic
+    def create(self, request, *args, **kwargs):
+        status = 'Success'
+        try:
+            off_detail = Officer_Details.objects.create(**request.data)
+            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
+            file_upload(request, 'image', os.path.join(path, file_name))
+            off_detail['image'] = file_name
+            off_detail.save()
+        except Exception as e:
+            status = 'Error'
+
+        return Response({
+            'status': status})
 
 class FarmingViewSet(NonDestructiveModelViewSet):
 
@@ -156,6 +185,23 @@ class CropLifeCycleViewSet(NonDestructiveModelViewSet):
         queryset = super().get_queryset()
         return queryset
 
+    @transaction.atomic
+    def create(self, request, *args, **kwargs):
+        status = 'Success'
+        try:
+            off_detail = Officer_Details.objects.create(**request.data)
+            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
+            file_upload(request, 'image', os.path.join(path, file_name))
+            off_detail['image'] = file_name
+            file_upload(request, 'video', os.path.join(path, file_name))
+            off_detail['video'] = file_name
+            off_detail.save()
+        except Exception as e:
+            status = 'Error'
+
+        return Response({
+            'status': status})
+
 class YieldViewSet(NonDestructiveModelViewSet):
 
     """
@@ -186,6 +232,23 @@ class YieldViewSet(NonDestructiveModelViewSet):
 
         return queryset
 
+    @transaction.atomic
+    def create(self, request, *args, **kwargs):
+        status = 'Success'
+        try:
+            off_detail = Officer_Details.objects.create(**request.data)
+            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
+            file_upload(request, 'image', os.path.join(path, file_name))
+            off_detail['image'] = file_name
+            file_upload(request, 'video', os.path.join(path, file_name))
+            off_detail['video'] = file_name
+            off_detail.save()
+        except Exception as e:
+            status = 'Error'
+
+        return Response({
+            'status': status})
+
 
 class FarmerViewSet(NonDestructiveModelViewSet):
 
@@ -214,20 +277,22 @@ class FarmerViewSet(NonDestructiveModelViewSet):
             unmapped = true => Send filtered.
         """
         queryset = super().get_queryset()
-
-        # unmapped = self.request.QUERY_PARAMS.get('unmapped')
-        # include_mapped = False if unmapped == 'true' else True
-        # if include_mapped or self.action == 'detail':
-        #     return queryset
-
-        # mapped_quotes = KPICampaignMinor.objects.exclude(
-        #     status__in=['CNC', 'REJ', 'DEL']
-        # ).values_list('quote', flat=True)
-
-        # # Handle weird error thrown as a result of None included in list
-        # mapped_quotes = [i for i in mapped_quotes if i != None]
-        # queryset = queryset.exclude(id__in=mapped_quotes)
         return queryset
+
+    @transaction.atomic
+    def create(self, request, *args, **kwargs):
+        status = 'Success'
+        try:
+            off_detail = Officer_Details.objects.create(**request.data)
+            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
+            file_upload(request, 'image', os.path.join(path, file_name))
+            off_detail['image'] = file_name
+            off_detail.save()
+        except Exception as e:
+            status = 'Error'
+
+        return Response({
+            'status': status})
 
 @csrf_exempt
 @api_view(['GET', 'POST', ])

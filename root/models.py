@@ -58,6 +58,7 @@ class Officer_Details(models.Model):
     )
     idproof_type = models.CharField(max_length=25, choices=proof)
     proof_number = models.CharField(max_length=256, null=True)
+    image = models.CharField(max_length=256, null=True)
 
 class Farmer_Details(models.Model):
     name = models.CharField(
@@ -85,6 +86,7 @@ class Farmer_Details(models.Model):
     )
     idproof_type = models.CharField(max_length=25, choices=proof)
     proof_number = models.CharField(max_length=256, null=True)
+    image = models.CharField(max_length=256, null=True)
 
 class Crop(models.Model):
     crop_name = models.CharField(
