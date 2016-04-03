@@ -407,14 +407,14 @@ def get_meta(request):
     if farm_objs:
         for obj in farm_objs:
             farm_dict = {}
-            farm_dict["farming_id"]: obj.id
-            farm_dict["start_date"]: obj.start_date
-            farm_dict["expected_end_date"]: obj.expected_end_date
-            farm_dict["no_of_units_left_for_fund"]: obj.no_of_units_for_fund
-            farm_dict["crop_type"]: obj.crop_type.type_name
-            farm_dict["farming_type"]: obj.farming_type.types
-            farm_dict["crop"]: obj.crop_type.crop.crop_name
-            farm_dict["estimated_weight_per_unit"]: str(obj.estimated_yield)
+            farm_dict["farming_id"] = obj.id
+            farm_dict["start_date"] = obj.start_date
+            farm_dict["expected_end_date"] = obj.expected_end_date
+            farm_dict["no_of_units_left_for_fund"] = obj.no_of_units_for_fund
+            farm_dict["crop_type"] = obj.crop_type.type_name
+            farm_dict["farming_type"] = obj.farming_type.types
+            farm_dict["crop"] = obj.crop_type.crop.crop_name
+            farm_dict["estimated_weight_per_unit"] = str(obj.estimated_yield)
             land_details = {
                 "total_area": obj.land.total_area,
                 "area_unit": 'hector',
