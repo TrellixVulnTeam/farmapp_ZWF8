@@ -401,6 +401,9 @@ def get_meta(request):
                                         'land__district', 'land__taluk',
                                         'crop_type__crop', 'farmer',
                                         'farming_type', 'officer')
+    else:
+        return Response({
+            'result': result})
     if farm_objs:
         for obj in farm_objs:
             farm_dict = {}
