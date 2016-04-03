@@ -378,75 +378,75 @@ def get_meta(request):
     }
     return HttpResponse(json.dumps(resp), content_type='application/json')
 
-@login_required
-@csrf_exempt
-@api_view(['GET', 'POST', ])
-def get_meta(request):
-    result = []
-    state = request.GET.get('state')
-    latitude = request.GET.get('lat')
-    longitude = request.GET.get('lon')
-    farm_objs = []
-    if state:
-        state_obj = State.objects.get(name=state)
-        farm_objs = Farming.objects.filter(land__state=state_obj).select_related('land',
-                                                'land__state', 'crop_type',
-                                                'crop_type__crop', 'farmer',
-                                                'farming_type', 'officer')
-    elif latitude and longitude:
-        farm_objs = Farming.objects.filter(Q(land__latitude__rangee=(latitude+2,
-            latitude-2))&Q(land__longitude__rangee=(longitude+2,
-            longitude-2))).select_related('land', 'land__state',
-                                        'land__village', 'crop_type',
-                                        'land__district', 'land__taluk',
-                                        'crop_type__crop', 'farmer',
-                                        'farming_type', 'officer')
-    else:
-        return Response({
-            'result': result})
-    if farm_objs:
-        for obj in farm_objs:
-            farm_dict = {}
-            farm_dict["farming_id"] = obj.id
-            farm_dict["start_date"] = obj.start_date
-            farm_dict["expected_end_date"] = obj.expected_end_date
-            farm_dict["no_of_units_left_for_fund"] = obj.no_of_units_for_fund
-            farm_dict["crop_type"] = obj.crop_type.type_name
-            farm_dict["farming_type"] = obj.farming_type.types
-            farm_dict["crop"] = obj.crop_type.crop.crop_name
-            farm_dict["estimated_weight_per_unit"] = str(obj.estimated_yield)
-            land_details = {
-                "total_area": obj.land.total_area,
-                "area_unit": 'hector',
-                "village": obj.land.village.name,
-                "taluk": obj.land.taluk.name,
-                "district": obj.land.district.name,
-                "state": obj.land.state.name,
-                "latitude": obj.land.latitude,
-                "longitude":obj.land.longitude,
-                "address": obj.land.address,
-                "details": "%s, %s"%("Good yield", obj.farming_type.types)
-            }
-            farm_dict["land_details"] = land_details
-            farmer_details = {
-                "name": obj.farmer.name,
-                "full_name": obj.farmer.full_name,
-                "address": obj.farmer.address,
-                "mobile": obj.farmer.mobile,
-                "history": obj.farmer.detailed_history
-            }
-            farm_dict["farmer_details"] = farmer_details
-            officer_incharge = {
-                "name": obj.officer.name,
-                "full_name": obj.officer.full_name,
-                "mobile": obj.officer.mobile,
-                "email": obj.officer.email,
-                "qualification": obj.officer.qualification_details
-            }
-            farm_dict["officer_incharge"] = officer_incharge
-        result.append(farm_dict)
-    return Response({
-            'result': result})
+# @login_required
+# @csrf_exempt
+# @api_view(['GET', 'POST', ])
+# def get_meta(request):
+#     result = []
+#     state = request.GET.get('state')
+#     latitude = request.GET.get('lat')
+#     longitude = request.GET.get('lon')
+#     farm_objs = []
+#     if state:
+#         state_obj = State.objects.get(name=state)
+#         farm_objs = Farming.objects.filter(land__state=state_obj).select_related('land',
+#                                                 'land__state', 'crop_type',
+#                                                 'crop_type__crop', 'farmer',
+#                                                 'farming_type', 'officer')
+#     elif latitude and longitude:
+#         farm_objs = Farming.objects.filter(Q(land__latitude__rangee=(latitude+2,
+#             latitude-2))&Q(land__longitude__rangee=(longitude+2,
+#             longitude-2))).select_related('land', 'land__state',
+#                                         'land__village', 'crop_type',
+#                                         'land__district', 'land__taluk',
+#                                         'crop_type__crop', 'farmer',
+#                                         'farming_type', 'officer')
+#     else:
+#         return Response({
+#             'result': result})
+#     if farm_objs:
+#         for obj in farm_objs:
+#             farm_dict = {}
+#             farm_dict["farming_id"] = obj.id
+#             farm_dict["start_date"] = obj.start_date
+#             farm_dict["expected_end_date"] = obj.expected_end_date
+#             farm_dict["no_of_units_left_for_fund"] = obj.no_of_units_for_fund
+#             farm_dict["crop_type"] = obj.crop_type.type_name
+#             farm_dict["farming_type"] = obj.farming_type.types
+#             farm_dict["crop"] = obj.crop_type.crop.crop_name
+#             farm_dict["estimated_weight_per_unit"] = str(obj.estimated_yield)
+#             land_details = {
+#                 "total_area": obj.land.total_area,
+#                 "area_unit": 'hector',
+#                 "village": obj.land.village.name,
+#                 "taluk": obj.land.taluk.name,
+#                 "district": obj.land.district.name,
+#                 "state": obj.land.state.name,
+#                 "latitude": obj.land.latitude,
+#                 "longitude":obj.land.longitude,
+#                 "address": obj.land.address,
+#                 "details": "%s, %s"%("Good yield", obj.farming_type.types)
+#             }
+#             farm_dict["land_details"] = land_details
+#             farmer_details = {
+#                 "name": obj.farmer.name,
+#                 "full_name": obj.farmer.full_name,
+#                 "address": obj.farmer.address,
+#                 "mobile": obj.farmer.mobile,
+#                 "history": obj.farmer.detailed_history
+#             }
+#             farm_dict["farmer_details"] = farmer_details
+#             officer_incharge = {
+#                 "name": obj.officer.name,
+#                 "full_name": obj.officer.full_name,
+#                 "mobile": obj.officer.mobile,
+#                 "email": obj.officer.email,
+#                 "qualification": obj.officer.qualification_details
+#             }
+#             farm_dict["officer_incharge"] = officer_incharge
+#         result.append(farm_dict)
+#     return Response({
+#             'result': result})
 
 class CropViewSet(NonDestructiveModelViewSet):
 
