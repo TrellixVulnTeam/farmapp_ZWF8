@@ -396,7 +396,7 @@ def get_meta(request):
     elif latitude and longitude:
         farm_objs = Farming.objects.filter(Q(land__latitude__rangee=(latitude+2,
             latitude-2))&Q(land__longitude__rangee=(longitude+2,
-            longitude-2)).select_related('land', 'land__state',
+            longitude-2))).select_related('land', 'land__state',
                                         'land__village', 'crop_type',
                                         'land__district', 'land__taluk',
                                         'crop_type__crop', 'farmer',
