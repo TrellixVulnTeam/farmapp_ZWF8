@@ -57,26 +57,24 @@ class Officer_Details(models.Model):
         ("Other", "Other")
     )
     idproof_type = models.CharField(max_length=25, choices=proof)
-    proof_number = models.CharField(max_length=256, null=True)
-    image = models.CharField(max_length=256, null=True)
+    proof_number = models.CharField(max_length=256, null=True, blank=True)
+    image = models.CharField(max_length=256, null=True, blank=True)
 
 class Farmer_Details(models.Model):
     name = models.CharField(
         max_length=256, null=True)
     full_name = models.CharField(
         max_length=256, null=True)
-    qualification_details = models.TextField()
     village = models.ForeignKey(Village)
     date_joining = models.DateField()
-    assignee = models.ForeignKey("self")
     mobile = models.BigIntegerField(default=0)
     address = models.TextField()
     taluk = models.ForeignKey(Taluk)
     state = models.ForeignKey(State)
     district = models.ForeignKey(District)
     detailed_history = models.TextField()
-    account_details = models.TextField()
-    account_number = models.IntegerField()
+    account_details = models.TextField(null=True, blank=True)
+    account_number = models.BigIntegerField(null=True, blank=True)
     proof = (
         ("Adhaar", "Adhaar"),
         ("VoterId", "VoterId"),
@@ -85,8 +83,8 @@ class Farmer_Details(models.Model):
         ("Other", "Other")
     )
     idproof_type = models.CharField(max_length=25, choices=proof)
-    proof_number = models.CharField(max_length=256, null=True)
-    image = models.CharField(max_length=256, null=True)
+    proof_number = models.CharField(max_length=256, null=True, blank=True)
+    image = models.CharField(max_length=256, null=True, blank=True)
 
 class Crop(models.Model):
     crop_name = models.CharField(
@@ -119,7 +117,7 @@ class Service_Provider(models.Model):
 
 class Farm_Land_Details(models.Model):
     image = models.CharField(
-        max_length=256, null=True)
+        max_length=256, null=True, blank=True)
     total_area = models.FloatField()
     village = models.ForeignKey(Village)
     farmer = models.ForeignKey(Farmer_Details)
@@ -153,7 +151,7 @@ class Farming(models.Model):
     land = models.ForeignKey(Farm_Land_Details)
     farmer = models.ForeignKey(Farmer_Details)
     start_date = models.DateField()
-    end_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
     expected_end_date = models.DateField()
     no_of_units = models.IntegerField(default=0)
     officer = models.ForeignKey(Officer_Details)
@@ -165,9 +163,9 @@ class Farming(models.Model):
 
 
 class Crop_Life_Cycle(models.Model):
-    video = models.CharField(max_length=256, null=False)
-    image = models.CharField(max_length=256, null=False)
-    description = models.TextField()
+    video = models.CharField(max_length=256, null=True, blank=True)
+    image = models.CharField(max_length=256, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     farm = models.ForeignKey(Farming)
     day = models.DateField()
     day_count = models.IntegerField()
@@ -177,26 +175,26 @@ class Crop_Life_Cycle(models.Model):
 
 
 class Yield(models.Model):
-    video = models.CharField(max_length=256, null=False)
-    image = models.CharField(max_length=256, null=False)
+    video = models.CharField(max_length=256, null=True, blank=True)
+    image = models.CharField(max_length=256, null=True, blank=True)
     description = models.TextField()
     farm = models.ForeignKey(Farming)
     day = models.DateField()
     day_count = models.IntegerField()
     service = models.ForeignKey(Service_Provider)
     estimated_cost = models.FloatField()
-    cost_end_of_farm = models.FloatField()
+    cost_end_of_farm = models.FloatField(null=True, blank=True)
     estimated_yield = models.FloatField()
-    final_yield = models.FloatField()
-    spend_per_unit = models.FloatField()
+    final_yield = models.FloatField(null=True, blank=True)
+    spend_per_unit = models.FloatField(null=True, blank=True)
     our_price_quote_per_unit = models.FloatField()
     market_price_per_unit = models.FloatField()
-    no_of_units_sold_fruit = models.IntegerField()
-    no_of_units_to_seed = models.IntegerField()
+    no_of_units_sold_fruit = models.IntegerField(null=True, blank=True)
+    no_of_units_to_seed = models.IntegerField(null=True, blank=True)
 
 class Delivery(models.Model):
-    key = models.CharField(max_length=256, null=False)
-    status = models.CharField(max_length=256, null=False)
+    key = models.CharField(max_length=256, null=True, blank=True)
+    status = models.CharField(max_length=256, null=True, blank=True)
     from_address = models.TextField()
     to_address = models.TextField()
     service_provider = models.ForeignKey(Service_Provider)
