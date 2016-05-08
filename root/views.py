@@ -402,8 +402,10 @@ def get_meta(request):
                                         'crop_type__crop', 'farmer',
                                         'farming_type', 'officer')
     else:
-        return Response({
-            'result': result})
+        farm_objs = Farming.objects.all().select_related('land',
+                                                'land__state', 'crop_type',
+                                                'crop_type__crop', 'farmer',
+                                                'farming_type', 'officer')
     if farm_objs:
         for obj in farm_objs:
             farm_dict = {}
