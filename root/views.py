@@ -446,7 +446,7 @@ def get_meta(request):
                 "qualification": obj.officer.qualification_details
             }
             farm_dict["officer_incharge"] = officer_incharge
-        result.append(farm_dict)
+            result.append(farm_dict)
     return Response({
             'result': result})
 
