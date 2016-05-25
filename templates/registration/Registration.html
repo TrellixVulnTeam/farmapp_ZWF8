@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <title></title>
 	 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="../../static/farmapp/js/jquery-1.10.2.min.js"></script>
+	<!-- <script type="text/javascript" src="../../static/farmapp/js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="../../static/farmapp/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="../../static/farmapp/js/Registration.js"></script>
+    <script type="text/javascript" src="../../static/farmapp/js/Registration.js"></script> -->
+    {% load staticfiles %}
+      <script type="text/javascript" src={% static "farmapp/js/jquery-1.10.2.min.js" %}></script>
+      <script type="text/javascript" src={% static "farmapp/js/bootstrap.min.js" %}></script>
+
+    <script type="text/javascript" src={% static "farmapp/js/Registration.js" %}></script>
 	<style type="text/css">
 		body{
     background-color: #525252;
