@@ -21,7 +21,7 @@ from .permissions import IsStaffOrTargetUser
 
 @csrf_exempt
 def load_map(request):
-    return render(request, 'api/view_map.html')
+    return render(request, 'api/Map-search.html')
 
 
 class UserView(viewsets.ModelViewSet):
