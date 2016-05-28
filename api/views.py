@@ -23,6 +23,10 @@ from .permissions import IsStaffOrTargetUser
 def load_map(request):
     return render(request, 'api/Map-search.html')
 
+@csrf_exempt
+def load_register(request):
+    return render(request, 'api/Registration.html')
+
 
 class UserView(viewsets.ModelViewSet):
     queryset = get_user_model().objects
