@@ -9,25 +9,26 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
 <meta name="description" content="">
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
+{% load staticfiles %}
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
 <!-- Style Sheets -->
-<link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/templatemo_misc.css">
-<link rel="stylesheet" href="css/templatemo_style.css">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href={% static "/css/animate.css" %}>
+<link rel="stylesheet" href={% static "css/bootstrap.min.css" %}>
+<link rel="stylesheet" href={% static "css/font-awesome.min.css" %}>
+<link rel="stylesheet" href={% static "css/templatemo_misc.css" %}>
+<link rel="stylesheet" href={% static "css/templatemo_style.css" %}>
+<link rel="stylesheet" href={% static "css/styles.css" %}>
 <!-- JavaScripts -->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap-dropdown.js"></script>
-<script src="js/bootstrap-collapse.js"></script>
-<script src="js/bootstrap-tab.js"></script>
-<script src="js/jquery.singlePageNav.js"></script>
-<script src="js/jquery.flexslider.js"></script>
-<script src="js/custom.js"></script>
-<script src="js/jquery.lightbox.js"></script>
-<script src="js/templatemo_custom.js"></script>
-<script src="js/responsiveCarousel.min.js"></script>
+<script src={% static "js/jquery-1.11.1.min.js" %}></script>
+<script src={% static "js/bootstrap-dropdown.js" %}></script>
+<script src={% static "js/bootstrap-collapse.js" %}></script>
+<script src={% static "js/bootstrap-tab.js" %}></script>
+<script src={% static "js/jquery.singlePageNav.js" %}></script>
+<script src={% static "js/jquery.flexslider.js" %}></script>
+<script src={% static "js/custom.js" %}></script>
+<script src={% static "js/jquery.lightbox.js" %}></script>
+<script src={% static "js/templatemo_custom.js" %}></script>
+<script src={% static "js/responsiveCarousel.min.js" %}></script>
 </head>
 <body>
 <!-- header start -->
@@ -35,7 +36,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
   <div class="templatemo_topbar">
     <div class="container">
       <div class="row">
-        <div class="templatemo_titlewrapper"><img src="images/templatemo_logobg.png" alt="logo background">
+        <div class="templatemo_titlewrapper"><img src="{% static "images/templatemo_logobg.png" %}" alt="logo background">
           <div class="templatemo_title">
           	<!-- <table>
           	<tr>
@@ -44,7 +45,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
           	</tr>
           	</table> -->
           	<div style="margin-left:121px;margin-right:110px;">
-			<p style="float:Left;overflow:auto;"><img src="images/logocropped.jpg" width="70px;"alt="logo background"></p>
+			<p style="float:Left;overflow:auto;"><img src="{% static "images/logocropped.jpg" %}" width="70px;"alt="logo background"></p>
 			<label style="color:#F3B23A;">URConnected</label>
 			<div style="float:right; font-size:15px;">
               <a href="http://urconnected.in/api/register/" style="color:Green">Register</a> |
@@ -84,11 +85,11 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
   <div class="templatemo_headerimage">
     <div class="flexslider">
       <ul class="slides">
-	  <li><img src="images/slider/slid1.jpg" alt="Slide 3"></li>
-	          <li><img src="images/slider/agg.jpg" alt="Slide 3"></li>
-        <li><img src="images/slider/1.jpg" alt="Slide 1"></li>
-        <li><img src="images/slider/2.jpg" alt="Slide 2"></li>
-        <li><img src="images/slider/3.jpg" alt="Slide 3"></li>
+	  <li><img src="{% static "images/slider/slid1.jpg" %}" alt="Slide 3"></li>
+	          <li><img src="{% static "images/slider/agg.jpg" %}" alt="Slide 3"></li>
+        <li><img src="{% static "images/slider/1.jpg" %}" alt="Slide 1"></li>
+        <li><img src="{% static "images/slider/2.jpg" %}" alt="Slide 2"></li>
+        <li><img src="{% static "images/slider/3.jpg" %}" alt="Slide 3"></li>
       </ul>
     </div>
   </div>
@@ -111,14 +112,14 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
       URconnected has identified Four key services which are instrumental for success. One key is providing platform for raising funds for farmers. Second key is encouraging organic farming which is very important in present scenario. Third key is Knowledge transfer in farming across the country with effective solution in quick time. Fourth is Reduce Food wastage.</div>
       <div class="col-md-3 col-sm-6">
         <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
-          <div class="templatemo_serviceicon"><span><IMG SRC="images/funds.jpg"></span></div>
+          <div class="templatemo_serviceicon"><span><IMG SRC="{% static "images/funds.jpg" %}"></span></div>
           <div class="templatemo_service_title">Funds</div>
           <p>Connecting Urban to rural and helping farmers to raise funds without approaching bank for loans.</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
-          <div class="templatemo_serviceicon"><span><IMG SRC="images/Agriculture.png"></span></div>
+          <div class="templatemo_serviceicon"><span><IMG SRC="{% static "images/Agriculture.png" %}"></span></div>
           <div class="templatemo_service_title">Organic Farming</div>
          <!--  <p>URConnected is free HTML5 template by <span class="blue">template</span><span class="green">mo</span>. Feel free to download, edit and use this template..</p> -->
          <p>The main aim is to unwrap the process of farming to the end user so that they will be having confidence in what they are eating. Orgaic farming the mst important thing for healthy India.</p>
@@ -126,14 +127,14 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="templatemo_servicebox margin_bottom_1col">
-          <div class="templatemo_serviceicon"><span><IMG SRC="images/knowledgesharing.jpg"></span></div>
+          <div class="templatemo_serviceicon"><span><IMG SRC="{% static "images/knowledgesharing.jpg" %}"></span></div>
           <div class="templatemo_service_title">Knowledge Sharing</div>
           <p>We as a company form a platform for knowledge building and sharing of farming practices, technical support and resolving crises in crop in no time.</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="templatemo_servicebox">
-          <div class="templatemo_serviceicon"><span><IMG SRC="images/zerowastage.png"></span></div>
+          <div class="templatemo_serviceicon"><span><IMG SRC="{% static "images/zerowastage.png" %}"></span></div>
           <div class="templatemo_service_title"></div>
           <p>India with a population of 1.2 billion in which many are not accessible for quality food. Wastage of food is a big problem which is more than 30% now. We try to reduce that to minimum level.</p>
         </div>
@@ -153,7 +154,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
   </div>
   <div>
     <div class="templatemo_workbox">
-      <div class="gallery-item"><img src="images/work/1.jpg" alt="work 1">
+      <div class="gallery-item"><img src="{% static "images/work/1.jpg" %}" alt="work 1">
         <div class="overlay">
           <div class="templatemo_worktitle">Project #001</div>
           <div class="templatemo_workdes">Morbi et nisi in augue accumsan imperdiet</div>
@@ -163,7 +164,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
       </div>
     </div>
     <div class="templatemo_workbox">
-      <div class="gallery-item"><img src="images/work/2.jpg" alt="work 2">
+      <div class="gallery-item"><img src="{% static "images/work/2.jpg" %}" alt="work 2">
         <div class="overlay">
           <div class="templatemo_worktitle">Project #002</div>
           <div class="templatemo_workdes">Morbi et nisi in augue accumsan imperdiet</div>
@@ -187,7 +188,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
       <div id="w">
         <div class="crsl-items" data-navigation="navbtns">
           <div class="crsl-wrap">
-            <div class="crsl-item"><img src="images/team/01.jpg" alt="person 1">
+            <div class="crsl-item"><img src="{% static "images/team/01.jpg" %}" alt="person 1">
               <div class="templatemo_team_name">Shravan Kumar</div>
               <div class="templatemo_team_post">CEO</div>
               <div class="templatemo_social">
@@ -200,7 +201,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
               </div>
             </div>
             <!-- post #1 -->
-            <div class="crsl-item"><img src="images/team/02.jpg" alt="person 2">
+            <div class="crsl-item"><img src="{% static "images/team/02.jpg" %}" alt="person 2">
               <div class="templatemo_team_name">Prem Rathod</div>
               <div class="templatemo_team_post">Director</div>
               <div class="templatemo_social">
@@ -213,7 +214,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
               </div>
             </div>
             <!-- post #2 -->
-            <div class="crsl-item"><img src="images/team/03.jpg" alt="person 3">
+            <div class="crsl-item"><img src="{% static "images/team/03.jpg" %}" alt="person 3">
               <div class="templatemo_team_name">Sagar</div>
               <div class="templatemo_team_post">Developer</div>
               <div class="templatemo_social">
@@ -226,7 +227,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
               </div>
             </div>
             <!-- post #3 -->
-            <div class="crsl-item"><img src="images/team/04.jpg" alt="person 4">
+            <div class="crsl-item"><img src="{% static "images/team/04.jpg" %}" alt="person 4">
               <div class="templatemo_team_name">Srikanth</div>
               <div class="templatemo_team_post">Designer</div>
               <div class="templatemo_social">
@@ -239,7 +240,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
               </div>
             </div>
             <!-- post #4 -->
-            <div class="crsl-item"><img src="images/team/05.jpg" alt="person 5">
+            <div class="crsl-item"><img src="{% static "images/team/05.jpg" %}" alt="person 5">
               <div class="templatemo_team_name">Muhammad Azeem</div>
               <div class="templatemo_team_post">Developer</div>
               <div class="templatemo_social">
