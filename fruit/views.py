@@ -34,21 +34,22 @@ from api.models import *
 @api_view(['GET', 'POST', ])
 def post_fruit_data(request):
     result = []
-    seed_data = request.POST.get('seed_fund')
-    order_state = seed_data.get('order_state')
-    farm_id = Farming.objects.get(id=seed_data.get('farm_id'))
-    yields = Yield.objects.get(id=seed_data.get('trans_type'))
+    fruit_data = request.POST.get('fruit_fund')
+    fruit_data = json.loads(fruit_data)
+    order_state = fruit_data.get('order_state')
+    farm_id = Farming.objects.get(id=fruit_data.get('farm_id'))
+    yields = Yield.objects.get(id=fruit_data.get('trans_type'))
     try:
-        seed_obj = Fruit_Transaction(description=seed_data.get('desc'),
+        fruit_obj = Fruit_Transaction(description=fruit_data.get('desc'),
                                     farm=farm_id,
                                     day=datetime.datetime.now(),
                                     user=request.user,
-                                    price=seed_data.get('amount'),
-                                    no_of_units_bought=seed_data.get('units_count'),
+                                    price=fruit_data.get('amount'),
+                                    no_of_units_bought=fruit_data.get('units_count'),
                                     yields=yields,
                                     order_state=order_state
                     )
-        seed_obj.save()
+        fruit_obj.save()
     except:
         return Response({
                 'message': 'Failure',
