@@ -525,9 +525,10 @@ def get_transaction(request):
     result = {'seed':[], 'fruit': []}
     try:
         result['seed'] = get_seed_trans(user)
-        result['fruit'] = get_fruit_trans(user)
-    except:
+        #result['fruit'] = get_fruit_trans(user)
+    except Exception as e:
         return Response({
+                'msg': str(e),
                 'message': 'Failure',
                 'status':'Error'})
     return Response({

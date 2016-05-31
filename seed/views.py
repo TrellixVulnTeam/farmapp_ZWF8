@@ -58,17 +58,20 @@ def post_seed_data(request):
 
 def get_seed_trans(user):
     result = []
-    trans = Seed_Transaction.objects.filter(
-                            user=user).select_related(
-                            'transaction_type').order_by('day')
-    for tran in trans:
-        trans_dict = {}
-        trans_dict['id'] = tran.id
-        trans_dict['transaction_type'] =  tran.transaction_type.type
-        trans_dict['price'] = tran.price
-        trans_dict['units'] = trans.no_of_units_bought
-        trans_dict['order_state'] = tran.order_state
-        result.append(trans_dict)
+    try:
+        trans = Seed_Transaction.objects.filter(
+                                user=user).select_related(
+                                'transaction_type').order_by('day')
+        for tran in trans:
+            trans_dict = {}
+            trans_dict['id'] = tran.id
+            trans_dict['transaction_type'] =  tran.transaction_type.type
+            trans_dict['price'] = tran.price
+            trans_dict['units'] = trans.no_of_units_bought
+            trans_dict['order_state'] = tran.order_state
+            result.append(trans_dict)
+    except:
+        return ['error']
     return result
 
 
