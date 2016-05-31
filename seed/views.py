@@ -36,6 +36,7 @@ from api.models import *
 def post_seed_data(request):
     result = []
     seed_data = request.POST.get('seed_fund')
+    order_state = seed_data.get('order_state')
     farm_id = Farming.objects.get(id=seed_data.get('farm_id'))
     trans_type = Transaction_Type.objects.get(id=seed_data.get('trans_type'))
     try:
@@ -45,13 +46,31 @@ def post_seed_data(request):
                                     user=request.user,
                                     price=seed_data.get('amount'),
                                     no_of_units_bought=seed_data.get('units_count'),
-                                    transaction_type=trans_type
+                                    transaction_type=trans_type,
+                                    order_state=order_state
                     )
         seed_obj.save()
     except:
         return Response({
                 'message': 'Failure',
-                'status':'Error')
+                'status':'Error'})
     return Response({
             'message': 'Done',
-            'status':'Success')
+            'status':'Success'})
+
+def get_seed_trans(user):
+    result = []
+    trans = Seed_Transaction.objects.filter(
+                            user=user).select_related(
+                            'transaction_type').order_by('day')
+    for tran in trans:
+        trans_dict = {}
+        trans_dict['id'] = tran.id
+        trans_dict['transaction_type'] =  tran.transaction_type.type
+        trans_dict['price'] = tran.price
+        trans_dict['units'] = trans.no_of_units_bought
+        trans_dict['order_state'] = tran.order_state
+        result.append(trans_dict)
+    return result
+
+

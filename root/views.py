@@ -23,6 +23,8 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
+from seed.views import get_seed_trans
+from fruit.views import get_fruit_trans
 from .serializer import *
 from farmapp.settings import FILE_PATH as path
 
@@ -516,4 +518,22 @@ class VillageViewSet(NonDestructiveModelViewSet):
     filter_fields = ('state__name','district__name','taluk__name',
                     'state__id','district__id','taluk__id')
     search_fields = ('name',)
+
+@login_required
+@csrf_exempt
+@api_view(['GET', 'POST', ])
+def get_transaction(request):
+    user = request.User
+    result = {'seed':[], 'fruit': []}
+    try:
+        result['seed'] = get_seed_trans(user)
+        result['fruit'] = get_fruit_trans(user)
+    except:
+        return Response({
+                'message': 'Failure',
+                'status':'Error'})
+    return Response({
+            'result': result,
+            'message': 'Done',
+            'status':'Success'})
 
