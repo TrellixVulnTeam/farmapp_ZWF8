@@ -70,8 +70,8 @@ def get_seed_trans(user):
             trans_dict['units'] = trans.no_of_units_bought
             trans_dict['order_state'] = tran.order_state
             result.append(trans_dict)
-    except:
-        return ['error']
+    except Exception as e:
+        return [str(e)]
     return result
 
 
