@@ -519,7 +519,7 @@ class VillageViewSet(NonDestructiveModelViewSet):
 
 @login_required
 @csrf_exempt
-@api_view(['GET', 'POST', ])
+@api_view(['GET', ])
 def get_transaction(request):
     user = request.user
     result = {'seed':[], 'fruit': []}

@@ -30,10 +30,11 @@ from api.models import *
 
 @login_required
 @csrf_exempt
-@api_view(['GET', 'POST', ])
+@api_view(['POST', ])
 def post_seed_data(request):
     result = []
     seed_data = request.POST.get('seed_fund')
+    seed_data = json.loads(seed_data)
     order_state = seed_data.get('order_state')
     farm_id = Farming.objects.get(id=seed_data.get('farm_id'))
     trans_type = Transaction_Type.objects.get(id=seed_data.get('trans_type'))
@@ -48,8 +49,9 @@ def post_seed_data(request):
                                     order_state=order_state
                     )
         seed_obj.save()
-    except:
+    except Exception as e:
         return Response({
+                'msg': str(e),
                 'message': 'Failure',
                 'status':'Error'})
     return Response({
