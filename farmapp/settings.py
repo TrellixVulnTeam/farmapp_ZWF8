@@ -114,7 +114,7 @@ DATABASES = {
 LOGIN_URL = '/login/'
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
-LOGIN_REDIRECT_URL = '/viewmap/'
+LOGIN_REDIRECT_URL = '/userdetails/'
 
 LOGOUT_URL = '/logout/'
 
