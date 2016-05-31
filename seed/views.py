@@ -23,10 +23,19 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
+from .serializer import *
 from farmapp.settings import FILE_PATH as path
 from django.contrib.auth.models import User
 from root.models import Transaction_Type, Farming, Delivery
+#from root.views import NonDestructiveModelViewSet
 from api.models import *
+
+
+
+class NonDestructiveModelViewSet(viewsets.ModelViewSet):
+
+    def destroy(self, request, *args, **kwargs):
+        raise exceptions.MethodNotAllowed("Delete")
 
 @login_required
 @csrf_exempt
@@ -57,6 +66,33 @@ def post_seed_data(request):
     return Response({
             'message': 'Done',
             'status':'Success'})
+
+class SeedTransactionViewSet(NonDestructiveModelViewSet):
+
+    """
+    Endpoint: /seed/post/
+
+    GET: Typical RESTful Response including Pagination.
+
+    `search` query parameter => ?search=<search text>
+
+    PUT & PATCH are available though no validations
+                beyond data types exist on it for now.
+
+    """
+    queryset = Seed_Transaction.objects.all()
+    serializer_class = SeedTransactionSerializer
+    filter_backends = (filters.SearchFilter,
+                       filters.DjangoFilterBackend, filters.OrderingFilter,)
+    ordering_fields = '__all__'
+
+    def get_queryset(self):
+        """
+            Default:  Send All.
+            unmapped = true => Send filtered.
+        """
+        queryset = super().get_queryset()
+        return queryset
 
 def get_seed_trans(user):
     result = []

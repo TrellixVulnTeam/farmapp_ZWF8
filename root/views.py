@@ -117,7 +117,7 @@ class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
     def create(self, request, *args, **kwargs):
         status = 'Success'
         try:
-            off_detail = Officer_Details.objects.create(**request.data)
+            off_detail = Farm_Land_Details.objects.create(**request.data)
             file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
             file_upload(request, 'image', os.path.join(path, file_name))
             off_detail['image'] = file_name
@@ -191,7 +191,7 @@ class CropLifeCycleViewSet(NonDestructiveModelViewSet):
     def create(self, request, *args, **kwargs):
         status = 'Success'
         try:
-            off_detail = Officer_Details.objects.create(**request.data)
+            off_detail = Crop_Life_Cycle.objects.create(**request.data)
             file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
             file_upload(request, 'image', os.path.join(path, file_name))
             off_detail['image'] = file_name
@@ -238,7 +238,7 @@ class YieldViewSet(NonDestructiveModelViewSet):
     def create(self, request, *args, **kwargs):
         status = 'Success'
         try:
-            off_detail = Officer_Details.objects.create(**request.data)
+            off_detail = Yield.objects.create(**request.data)
             file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
             file_upload(request, 'image', os.path.join(path, file_name))
             off_detail['image'] = file_name
@@ -285,7 +285,7 @@ class FarmerViewSet(NonDestructiveModelViewSet):
     def create(self, request, *args, **kwargs):
         status = 'Success'
         try:
-            off_detail = Officer_Details.objects.create(**request.data)
+            off_detail = Farmer_Details.objects.create(**request.data)
             file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
             file_upload(request, 'image', os.path.join(path, file_name))
             off_detail['image'] = file_name
