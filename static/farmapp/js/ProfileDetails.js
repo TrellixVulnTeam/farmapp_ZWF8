@@ -25,6 +25,8 @@ function FillProfileDetails(){
 }
 
 function FillProfileDetailsDomEle(tempData){
-
-    var trEleToAdd="";
+    var trEleToAdd=$("#tblProfileDetails");
+    for(var iData in tempData){
+        trEleToAdd.append("<tr><td>"+iData+"</td> "+tempData[iData]+"</tr>");
+    }
 }
