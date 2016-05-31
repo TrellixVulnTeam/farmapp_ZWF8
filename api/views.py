@@ -29,6 +29,9 @@ def load_register(request):
 @csrf_exempt
 def load_userdetails(request):
     return render(request, 'api/UserDetails.html')
+@csrf_exempt
+def load_pfdetails(request):
+    return render(request, 'api/ProfileDetails.html')
 
 class UserView(viewsets.ModelViewSet):
     queryset = get_user_model().objects

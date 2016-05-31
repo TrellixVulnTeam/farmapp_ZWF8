@@ -16,5 +16,6 @@ urlpatterns = [
 	url(r'^register/$',views.load_register),
 	url(r'^viewmap/$',views.load_map),
 	url(r'^userdetails/$',views.load_userdetails),
+	url(r'^profiledetails/$',views.load_pfdetails),
 	url(r'^api/', include(router.urls)),
 ]
