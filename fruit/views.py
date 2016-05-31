@@ -24,7 +24,6 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
-from .serializer import *
 from farmapp.settings import FILE_PATH as path
 from django.contrib.auth.models import User
 from root.models import Yield, Farming, Delivery
