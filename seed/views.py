@@ -27,8 +27,15 @@ from .serializer import *
 from farmapp.settings import FILE_PATH as path
 from django.contrib.auth.models import User
 from root.models import Transaction_Type, Farming, Delivery
-from root.views import NonDestructiveModelViewSet
+#from root.views import NonDestructiveModelViewSet
 from api.models import *
+
+
+
+class NonDestructiveModelViewSet(viewsets.ModelViewSet):
+
+    def destroy(self, request, *args, **kwargs):
+        raise exceptions.MethodNotAllowed("Delete")
 
 @login_required
 @csrf_exempt
