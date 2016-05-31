@@ -2,7 +2,7 @@
  * Created by kanuru.sagar on 06/01/16.
  */
 var tempData={"un":"SAGAR","lu":new Date()};
-$.document.ready(function () {
+$(document).ready(function () {
     FillProfileDetailsDomEle(tempData);
 })
 

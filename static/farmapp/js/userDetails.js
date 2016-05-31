@@ -3,4 +3,5 @@
  */
 $(document).ready(function () {
  $("#profileDetails").load("../profiledetails");
+ $("#Invest").load("../viewmap");
 });
