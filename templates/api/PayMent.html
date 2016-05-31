@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="deposit-container">
+
+<ul class="tabs-deposit">
+<li class="tab-link" data-tab="tab-1">Credit Card</li>
+<li class="tab-link" data-tab="tab-2">Debit Card</li>
+<li class="tab-link" data-tab="tab-3">Net Banking</li>
+<li class="tab-link current" data-tab="tab-4">Ewallet</li>
+<!--<li class="tab-link" data-tab="tab-5">
+
+<select id="selectbank2" class="casher_select" style="width:190px; display:inline-block;" name="bankcode" select-type="NetBanking">
+                     <option value="">Others</option>
+                     <!--<option value="ir-wire-transfer">Bank of Wire Transfer</option>
+                     <option value="ir-payubiz">PayUbiz</option>
+ <option value="ir-mobile-wallet">Mobile Wallet</option>
+ <option value="ir-cash-card">Cash Cards</option>-->
+
+       	         <!--<option value="48">Andhra Bank</option>
+
+       	       <option value="1">Axis Bank</option>
+
+       	       <option value="2">Bank of Bahrain and Kuwait</option> </select>
+
+</li> -->
+</ul>
+
+<div id="tab-1" class="tab-content">
+
+    <input type="hidden" value="100.00" id="lowerlimit">
+        <input type="hidden" value="10000.00" id="upperlimit">
+ <form name="creditcard" action="/sendpaymentrequest/" method="POST" id="myform" onsubmit="return paymentFormOnsubmit(this);">
+       <input type="hidden" name="csrfmiddlewaretoken" value="E8CJM37ntXf4eYZ0lpqcWswUZQYRDbjh">
+
+<input type="hidden" name="mode" value="CC">
+       <input type="hidden" value="creditcard" name="paymenttype">
+       <input type="hidden" value="creditcard" name="modeofdeposit">
+       <input type="hidden" value="visa" name="cardtype">
+       <input type="hidden" value="0" name="amount" id="creditcard_amount">
+       <input type="hidden" value="" name="bonuscode" id="creditcard_bonuscode">
+
+<div class="ir-deposit-banking-methods-all-sectors">
+<ul>
+
+<li class="ir-credit-card-part"><input type="radio" class="ir-radio-button-to-all" id="ir-rb1" name="creditcard_rb" value="ir-rb1" checked="checked"><label for="ir-rb1"><span></span><img src="/static_files/images/ir-visa-card.png" align="middle" alt="bonus codes" style="vertical-align:middle"></label></li>
+
+</body>
+</html>

@@ -3,10 +3,10 @@
  */
 
 function GetTxnDetails(){
-    $.aja({
+    $.ajax({
          type: "GET",
         async: "false",
-        url: "http://" + compositeDataUrl + "/composite/get_scenarios?companyid=" + companyId + "&callback=?",
+        url: "http://" + farmAppUrl + "/composite/get_scenarios?companyid=" + companyId + "&callback=?",
         data: {},
         contentType: "application/json; charset=utf-8",
         dataType: "jsonp",
