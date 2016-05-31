@@ -65,7 +65,7 @@ def get_seed_trans(user):
         for tran in trans:
             trans_dict = {}
             trans_dict['id'] = tran.id
-            trans_dict['transaction_type'] =  tran.transaction_type.type
+            trans_dict['transaction_type'] =  tran.transaction_type.types
             trans_dict['price'] = tran.price
             trans_dict['units'] = trans.no_of_units_bought
             trans_dict['order_state'] = tran.order_state
