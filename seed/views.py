@@ -84,8 +84,6 @@ class SeedTransactionViewSet(NonDestructiveModelViewSet):
     serializer_class = SeedTransactionSerializer
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
-    search_fields = ('name',)
-    filter_fields = ('name',)
     ordering_fields = '__all__'
 
     def get_queryset(self):
