@@ -14,7 +14,7 @@ from django.db.models import Q
 from django.http import *
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
-from datetime
+import datetime
 
 import cgi
 from rest_framework.response import Response

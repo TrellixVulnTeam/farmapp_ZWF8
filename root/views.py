@@ -14,8 +14,6 @@ from django.db.models import Q
 from django.http import *
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
-
-import cgi
 from rest_framework.response import Response
 from rest_framework import exceptions, filters, generics, mixins, status, viewsets
 from rest_framework.response import Response
