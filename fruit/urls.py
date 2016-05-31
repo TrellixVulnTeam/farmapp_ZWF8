@@ -6,6 +6,6 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
 urlpatterns = [
-    url(r'^post/$', views.post_seed_data,name='postseed' ),
-    url(r'^', include(router.urls)),
+	url(r'^post/$', views.post_fruit_data,name='postseed' ),
+	url(r'^', include(router.urls)),
 ]

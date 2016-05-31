@@ -21,6 +21,7 @@ router.register(r'taluk', views.TalukViewSet)
 router.register(r'village', views.VillageViewSet)
 
 urlpatterns = [
-	url(r'^getmeta/$', views.get_meta,name='meta' ),
-	url(r'^', include(router.urls)),
+    url(r'^getmeta/$', views.get_meta, name='meta'),
+    url(r'^getrans/$', views.get_transaction, name='transaction'),
+    url(r'^', include(router.urls)),
 ]

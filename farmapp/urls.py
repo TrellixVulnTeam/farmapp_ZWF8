@@ -20,4 +20,6 @@ urlpatterns = [
 	url(r'^', include('api.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^root/', include('root.urls')),
+    url(r'^seed/', include('seed.urls')),
+    url(r'^fruit/', include('fruit.urls')),
 ]
