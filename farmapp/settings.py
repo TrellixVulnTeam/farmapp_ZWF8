@@ -23,7 +23,7 @@ FILE_PATH = '/var/www/files'
 SECRET_KEY = '-!i*puwozh$=y)ohl(ju*xx5=s@6d6)8uwfpw(s15lt6#@)72+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
