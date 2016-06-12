@@ -3,7 +3,7 @@ function SaveUserDetails(){
             last_name:$("#inputUsername").val(),username:$("#inputUsername").val()
         ,password:$("#password").val(),email:$("#email").val()});
  $.ajax({
-            url: "http://52.34.81.0/api/accounts",
+            url: "http://urconnected.in/api/accounts/",
             type: "POST",
             async: false,
             data: data,
@@ -17,6 +17,9 @@ function SaveUserDetails(){
             }
         });
 }
+// $.post('/api/accounts/', data).done(function(data){
+//     console.log(data);
+// });
 
 /**
  * Created by kanuru.sagar on 02/29/16.
