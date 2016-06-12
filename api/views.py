@@ -34,11 +34,15 @@ def load_pfdetails(request):
     return render(request, 'api/ProfileDetails.html')
 
 class UserView(viewsets.ModelViewSet):
-    queryset = get_user_model().objects
-    serializer_class = UserSerializer
+	serializer_class = UserSerializer
+    model = User
+    # queryset = get_user_model().objects
+    # serializer_class = UserSerializer
 
     def get_permissions(self):
-        if self.request.method == 'POST':
-            self.permission_classes = (AllowAny,)
+        return (AllowAny() if self.request.method == 'POST'
+                else IsStaffOrTargetUser()),
+        # if self.request.method == 'POST':
+        #     self.permission_classes = (AllowAny,)
 
-        return super(UserView, self).get_permissions()
+        # return super(UserView, self).get_permissions()
