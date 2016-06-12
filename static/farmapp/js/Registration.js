@@ -1,3 +1,20 @@
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 function SaveUserDetails(){
     var data=JSON.stringify({first_name:$("#inputUsername").val(),
             last_name:$("#inputUsername").val(),username:$("#inputUsername").val()
@@ -8,7 +25,7 @@ function SaveUserDetails(){
             async: false,
             data:  {
             'content': data,
-            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'csrfmiddlewaretoken': getCookie('csrftoken'),
             },
             dataType: "json",
             contenttype: "application/json; charset=utf-8",
