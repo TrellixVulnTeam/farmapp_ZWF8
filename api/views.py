@@ -34,7 +34,7 @@ def load_pfdetails(request):
     return render(request, 'api/ProfileDetails.html')
 
 class UserView(viewsets.ModelViewSet):
-	serializer_class = UserSerializer
+    serializer_class = UserSerializer
     model = User
     queryset = get_user_model().objects
     # serializer_class = UserSerializer
