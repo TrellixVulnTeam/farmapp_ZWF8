@@ -24,7 +24,7 @@ function SaveUserDetails(){
     $.ajax({
             url: "http://urconnected.in/api/accounts/",
             type: "POST",
-            data: Data,
+            data: data,
             dataType: "json",
             headers: { "X-CSRFToken": csrftoken},
             success:function(data, textStatus, jqXHR)
