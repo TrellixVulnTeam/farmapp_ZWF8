@@ -18,13 +18,13 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 
 function SaveUserDetails(){
-    var data=JSON.stringify({first_name:$("#inputUsername").val(),
+    var Data=JSON.stringify({first_name:$("#inputUsername").val(),
             last_name:$("#inputUsername").val(),username:$("#inputUsername").val()
         ,password:$("#password").val(),email:$("#email").val()});
     $.ajax({
             url: "http://urconnected.in/api/accounts/",
             type: "POST",
-            data: data,
+            data: Data,
             dataType: "json",
             headers: { "X-CSRFToken": csrftoken},
             success:function(data, textStatus, jqXHR)
@@ -32,7 +32,7 @@ function SaveUserDetails(){
                 alert("Sucessfully created user details.");
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert('Error occurred while  saving user details.\n Please Contact Appssupport.' + jqXHR.statusText);
+                alert('Error occurred while  saving user details.\n Please Contact Appssupport.' );
             }
     });
 // $.post('/api/accounts/', data).done(function(data){
