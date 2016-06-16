@@ -133,7 +133,7 @@ USE_TZ = True
 CORS_ORIGIN_WHITELIST = (
     '127.0.0.1',
     'localhost',
-    'urconnected.in'
+    'urconnected.in',
     '52.34.81.0',
 )
 
