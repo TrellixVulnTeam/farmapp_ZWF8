@@ -130,12 +130,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-CORS_ORIGIN_WHITELIST = (
-    '127.0.0.1',
-    'localhost',
-    'urconnected.in',
-    '52.34.81.0',
-)
+# CORS_ORIGIN_WHITELIST = (
+#     '127.0.0.1',
+#     'localhost',
+#     'urconnected.in',
+#     '52.34.81.0',
+# )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
