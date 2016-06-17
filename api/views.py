@@ -40,7 +40,7 @@ class UserDetailsViewSet(viewsets.ModelViewSet):
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
-    filter_fields = ('user__id','user__name', 'id')
+    #filter_fields = ('user__id','user__name', 'id')
     search_fields = ('name',)
 
 class UserView(viewsets.ModelViewSet):
