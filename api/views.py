@@ -17,6 +17,7 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 from .serializer import *
+from .models import *
 from .permissions import IsStaffOrTargetUser
 
 @csrf_exempt
@@ -32,6 +33,14 @@ def load_userdetails(request):
 @csrf_exempt
 def load_pfdetails(request):
     return render(request, 'api/ProfileDetails.html')
+
+class UserDetailsViewSet(viewsets.ModelViewSet):
+
+    queryset = UserDetails.objects.all()
+    serializer_class = UserDetailsSerializer
+    filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
+    filter_fields = ('user__id','user__name', 'id')
+    search_fields = ('name',)
 
 class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
