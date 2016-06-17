@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from .models import *
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,3 +35,8 @@ class UserSerializer(serializers.ModelSerializer):
             password = validated_data.pop('password')
             instance.set_password(password)
         return super(UserSerializer, self).update(instance, validated_data)
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserDetails

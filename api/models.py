@@ -1,18 +1,30 @@
 from django.db import models
-#from farmapp.root.models import *
+from django.contrib.auth.models import User
 
-# Create your models here.
 
-# class User(models.Model):
-#     name = models.CharField(
-#         max_length=256, null=True)
-#     full_name = models.CharField(
-#         max_length=256, null=True)
-#     email = models.EmailField(max_length=256)
-#     date_joining = models.DateField()
-#     mobile = models.IntegerField(default=0)
-#     address = models.TextField()
-#     taluk = models.ForeignKey(Taluk)
-#     state = models.ForeignKey(State)
-#     district = models.ForeignKey(District)
+class UserDetails(models.Model):
+    name = models.CharField(
+        max_length=256, null=True)
+    full_name = models.CharField(
+        max_length=256, null=True)
+    user = models.ForeignKey(User)
+    email = models.EmailField(max_length=256)
+    phone = models.BigIntegerField(default=0)
+    proof = (
+        ("Adhaar", "Adhaar"),
+        ("VoterId", "VoterId"),
+        ("RationId", "RationId"),
+        ("PanId", "PanId"),
+        ("Other", "Other")
+    )
+    idproof_type = models.CharField(max_length=25,
+        null=True, blank=True, choices=proof)
+    proof = (
+        ("Male", "Male"),
+        ("Female", "Female")
+    )
+    gender = models.CharField(max_length=25, choices=proof)
+    proof_number = models.CharField(max_length=256, null=True, blank=True)
+    image = models.CharField(max_length=256, null=True, blank=True)
+    address = models.TextField()
 
