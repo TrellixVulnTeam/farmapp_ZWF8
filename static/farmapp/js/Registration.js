@@ -18,11 +18,11 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 
 function SaveUserDetails(){
-    var Data=JSON.stringify({first_name:$("#inputUsername").val(),
+    var Data={first_name:$("#inputUsername").val(),
             last_name:$("#inputUsername").val(),username:$("#inputUsername").val()
-        ,password:$("#password").val(),email:$("#email").val()});
+        ,password:$("#password").val(),email:$("#email").val()};
     $.ajax({
-            url: "http://urconnected.in/api/accounts/",
+            url: "/api/accounts/",
             type: "POST",
             data: Data,
             dataType: "json",
