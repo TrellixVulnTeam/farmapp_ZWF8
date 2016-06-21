@@ -1,9 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script
-src="http://maps.googleapis.com/maps/api/js">
-</script>
+<title>URConnected</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+{% load staticfiles %}
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
+<!-- Style Sheets -->
+<link rel="stylesheet" href={% static "/css/animate.css" %}>
+<link rel="stylesheet" href={% static "css/bootstrap.min.css" %}>
+<link rel="stylesheet" href={% static "css/font-awesome.min.css" %}>
+<link rel="stylesheet" href={% static "css/templatemo_misc.css" %}>
+<link rel="stylesheet" href={% static "css/templatemo_style.css" %}>
+<link rel="stylesheet" href={% static "css/styles.css" %}>
+<!-- JavaScripts -->
+<script src={% static "js/jquery-1.11.1.min.js" %}></script>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script src={% static "js/bootstrap-dropdown.js" %}></script>
+<script src={% static "js/bootstrap-collapse.js" %}></script>
+<script src={% static "js/bootstrap-tab.js" %}></script>
+<script src={% static "js/jquery.singlePageNav.js" %}></script>
+<script src={% static "js/jquery.flexslider.js" %}></script>
+<script src={% static "js/custom.js" %}></script>
+<script src={% static "js/jquery.lightbox.js" %}></script>
+<script src={% static "js/templatemo_custom.js" %}></script>
+<script src={% static "js/responsiveCarousel.min.js" %}></script>
+
+<style type="text/css">
+ .logout-container { padding-top: 180px; }
+ .logout-profile, .logout-transaction{    writing-mode: tb-rl;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(180deg);
+    white-space: nowrap;
+    display: block;
+    padding: 15px 5px;
+    background: white; margin-bottom:20px; cursor: pointer;}
+.logout-popup, .logout-right { border: 1px solid #eaeaea; color: #fff; }
+.profile-text-left, .transaction-text-left, .right-text-left  {    float: left;
+    width: 90%;
+    text-align: justify;
+    padding: 10px;}
+.profile-closeimg, .transaction-closeimg, .right-closeimg {    float: left;
+    width: 10%;
+    cursor: pointer; padding-top: 10px;}
+.logout-profile-div { padding: 2px; }
+.logout-popup, .logout-right { visibility: hidden; }
+.map-clickhere {background: white;
+    /* width: 100px; */
+    text-align: center;
+    margin: 0px auto;
+    position: absolute;
+    top: 50%;
+    left: 43%;
+    cursor: pointer;
+    color: red;
+    font-size: 18px;
+    padding: 5px 15px;}
+    .map-clickhere:hover { border-bottom: 2px solid red; }
+</style>
 
 <script>
 var map;
@@ -40,6 +99,136 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </head>
 
 <body>
-<div id="googleMap" style="width:700px;height:380px;"></div>
+<div id="templatemo_home_page">
+      <div class="templatemo_topbar">
+        <div class="container">
+
+            <div class="templatemo_titlewrapper"><img src="{% static "images/templatemo_logobg.png" %}"   alt="logo background">
+              <div class="templatemo_title">
+               <div style="margin-left:125px;margin-right:110px;">
+                 <p style="float:Left;overflow:auto;"><img src="{% static "images/logocropped.jpg" %}" width="70px;" alt="logo background"></p>
+                 <label style="color:#367EBC;">U</label><label style="color:#6AC546">R</label><label style="color:#F3B23A;">Connected</label>
+                 <div style="float:right; font-size:15px;">
+                    <a href="http://urconnected.in/logout/" style="color:Green; padding-right:10px;">Log out</a>
+                 </div>
+                </div>
+              </div>
+            </div>
+              <div class="templatemo_titlewrappersmall">URConnected</div>
+            <nav class="navbar navbar-default templatemo_menu" role="navigation">
+              <div class="container-fluid"> 
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+                </div>
+              </div>
+              <!-- /.container-fluid --> 
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="logout-container container-fluid">
+        <div class="logout-map">
+<div id="googleMap" width="100%" height="700" frameborder="0" style="border:0" allowfullscreen></div>
+</div>  
+    </div>
+
+<div class="templatemo_footerwrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8">Copyright © 2016 <a href="http://urconnected.in/#">UR Connected</a></div>
+             <div class="col-md-4" style="float:right;">Connect with us:
+               <a href="https://www.facebook.com/URConnected.in">
+               <span style="font-size:20px; padding-left:10px; padding-right:10px" class="fa fa-facebook"></span></a>
+                <a href="https://twitter.com/URConnected_in">
+                <span style="font-size:20px; padding-right:10px" class="fa fa-twitter"></span></a>
+                <a href="https://www.linkedin.com/in/urconnected-for-a-better-future-a8ab13121">
+                <span style="font-size:20px; padding-right:10px" class="fa fa-linkedin"></span></a>
+                  <!-- <a href="#"><span class="fa fa-skype"></span></a> -->           
+               </div>
+          </div>
+        </div>
+      </div>
+<script>
+<!-- scroll to specific id when click on menu -->
+// Cache selectors
+var lastId,
+    topMenu = $("#top-menu"),
+    topMenuHeight = topMenu.outerHeight() + 15,
+    // All list items
+    menuItems = topMenu.find("a"),
+    // Anchors corresponding to menu items
+    scrollItems = menuItems.map(function() {
+        var item = $($(this).attr("href"));
+        if (item.length) {
+            return item;
+        }
+    });
+// Bind click handler to menu items
+// so we can get a fancy scroll animation
+menuItems.click(function(e) {
+    var href = $(this).attr("href"),
+        offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 1;
+    $('html, body').stop().animate({
+        scrollTop: offsetTop
+    }, 300);
+    e.preventDefault();
+});
+// Bind to scroll
+$(window).scroll(function() {
+    // Get container scroll position
+    var fromTop = $(this).scrollTop() + topMenuHeight;
+    // Get id of current scroll item
+    var cur = scrollItems.map(function() {
+        if ($(this).offset().top < fromTop)
+            return this;
+    });
+    // Get the id of the current element
+    cur = cur[cur.length - 1];
+    var id = cur && cur.length ? cur[0].id : "";
+    if (lastId !== id) {
+        lastId = id;
+        // Set/remove active class
+        menuItems
+            .parent().removeClass("active")
+            .end().filter("[href=#" + id + "]").parent().addClass("active");
+    }
+});
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $(".logout-profile").click(function(){
+          $(".logout-popup").css("visibility","visible");
+          $(".logout-transaction-div").css("display","none");
+          $(".logout-profile-div").css("display","block");
+      });
+      $(".profile-closeimg").click(function(){
+          $(".logout-popup").css("visibility","hidden");
+      });
+      $(".logout-transaction").click(function(){
+          $(".logout-popup").css("visibility","visible");
+          $(".logout-transaction-div").css("display","block");
+          $(".logout-profile-div").css("display","none");
+      });
+      $(".transaction-closeimg").click(function(){
+          $(".logout-popup").css("visibility","hidden");
+      });
+      $(".map-clickhere").click(function(){
+          $(".logout-right").css("visibility","visible");
+      });
+       $(".logout-profile").click(function(){
+          $(".logout-right").css("visibility","visible");
+      });
+
+       $(".logout-transaction").click(function(){
+          $(".logout-right").css("visibility","hidden");
+      });
+      $(".right-closeimg").click(function(){
+          $(".logout-right").css("visibility","hidden");
+      });
+  });
+
+</script>
 </body>
 </html>
