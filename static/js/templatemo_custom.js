@@ -92,11 +92,13 @@ jQuery(document).ready(function($){
 
 
 function loadScript() {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
-      'callback=initialize';
-  document.body.appendChild(script);
+	if(window.location.pathname.indexOf("viewmap")==-1) {
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+			'callback=initialize';
+		document.body.appendChild(script);
+	}
 }
 
 function initialize() {

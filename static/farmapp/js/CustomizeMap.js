@@ -10,9 +10,9 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 var infowindow = null, marker = null,markers=[];
-$(document).ready(function () {
+/* $(document).ready(function () {
    initMap();
-});
+});*/
 function placeMarker(location, map) {
      marker = new google.maps.Marker({
         position: location,
