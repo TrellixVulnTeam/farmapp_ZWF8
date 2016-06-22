@@ -29,7 +29,16 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
 <script src={% static "js/jquery.lightbox.js" %}></script>
 <script src={% static "js/templatemo_custom.js" %}></script>
 <script src={% static "js/responsiveCarousel.min.js" %}></script>
+<script src={% static "js/jquery.bpopup.min.js" %}></script>
 </head>
+<script type="text/javascript">
+    function OpenRegistrationPage() {
+        $('#element_to_pop_up').bPopup({
+            contentContainer: '.content',
+            loadUrl: 'http://urconnected.in/register/' //Uses jQuery.load()
+        });
+    }
+</script>
 <body>
 <!-- header start -->
 <div id="templatemo_home_page">
@@ -48,7 +57,7 @@ http://www.templatemo.com/preview/templatemo_426_URConnected
 			<p style="float:Left;overflow:auto;"><img src="{% static "images/logocropped.jpg" %}" width="70px;"alt="logo background"></p>
 			<label style="color:#367EBC;">U</label><label style="color:#6AC546">R</label><label style="color:#F3B23A;">Connected</span></label>
 			<div style="float:right; font-size:15px;">
-              <a href="http://urconnected.in/register/" style="color:Green">Register</a> |
+              <a onclick="OpenRegistrationPage()" href="javascript:void(0)" style="color:Green">Register</a> |
               <a href="http://urconnected.in/login/" style="color:Green" >Log In</a>
 			</div>
 			</div>
@@ -433,5 +442,7 @@ $(window).scroll(function() {
     }
 });
 </script>
+
+    <div id="element_to_pop_up"/>
 </body>
 </html>
