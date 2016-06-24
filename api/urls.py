@@ -16,7 +16,7 @@ urlpatterns = [
 	url(r'^$', TemplateView.as_view(template_name='api/index.html')),
 	url(r'^register/$',views.load_register),
 	url(r'^viewmap/$',views.load_map),
-	url(r'^userdetails/$',views.load_userdetails),
+	url(r'^userdetails/$',views.load_map),
 	url(r'^profiledetails/$',views.load_pfdetails),
 	url(r'^api/', include(router.urls)),
 ]
