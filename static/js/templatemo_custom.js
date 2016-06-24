@@ -92,7 +92,7 @@ jQuery(document).ready(function($){
 
 
 function loadScript() {
-	if(window.location.pathname.indexOf("viewmap")==-1) {
+	if(window.location.pathname.indexOf("viewmap")==-1 || window.location.pathname.indexOf("userdetails")==-1) {
 		var script = document.createElement('script');
 		script.type = 'text/javascript';
 		script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
