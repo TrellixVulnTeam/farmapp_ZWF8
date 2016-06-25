@@ -158,8 +158,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     google.maps.event.addListener(markerA, 'click', function () {
         alert(this.customInfo);
     });
-    });
-}
+    };
+
 
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
