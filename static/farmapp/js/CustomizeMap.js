@@ -47,7 +47,7 @@ var tempData = {};
 function initMap() {
     GetMetaData();
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -33.8688, lng: 151.2195 },
+        center: {lat: -33.8688, lng: 151.2195},
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -57,17 +57,16 @@ function initMap() {
     var types = document.getElementById('type-selector');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-    infoWindow = new google.maps.InfoWindow({ map: map });
- if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(function (position) {
-         initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-         map.setCenter(initialLocation);
-     });
- } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-
+    infoWindow = new google.maps.InfoWindow({map: map});
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(initialLocation);
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
@@ -158,6 +157,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     });
     google.maps.event.addListener(markerA, 'click', function () {
         alert(this.customInfo);
+    });
     });
 }
 
