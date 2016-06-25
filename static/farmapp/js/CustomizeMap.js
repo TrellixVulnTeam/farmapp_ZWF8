@@ -92,7 +92,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
      }); */
 
     autocomplete.addListener('place_changed', function () {
-        if (infowindow) {
+        if (infowindow)
             infowindow.close();
         if(marker==null)
          marker = new google.maps.Marker({
