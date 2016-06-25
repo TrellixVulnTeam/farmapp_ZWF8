@@ -30,7 +30,25 @@ function GetMetaData(){
             headers: { "X-CSRFToken": csrftoken},
             success:function(data, textStatus, jqXHR)
             {
-                tempData=data;
+                tempData=data.result;
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('Error occurred while Retriving map details.\n Please Contact Appssupport.' );
+            }
+    });
+}
+var g_UserDetails={};
+function GetMetaData(){
+     $.ajax({
+            url: "http://urconnected.in/root/getmeta/?format=json",
+            type: "GET",
+            dataType: "json",
+            headers: { "X-CSRFToken": csrftoken},
+            success:function(data, textStatus, jqXHR)
+            {
+                g_UserDetails=data.result;
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert('Error occurred while Retriving map details.\n Please Contact Appssupport.' );

@@ -20,10 +20,10 @@ function placeMarker(location, map) {
     });
     markers.push(marker);
     var lDetails = "", latitude = location.lat(), langitude = location.lng();
-    for (var ifarm in tempData.farms) {
+    for (var ifarm in tempData) {
         if (ifarm > 0)
             continue;
-        var cropData = tempData.farms[ifarm];
+        var cropData = tempData[ifarm];
         if (cropData.land_details.latitude == latitude && cropData.land_details.longitude == langitude)
             lDetails = lDetails + "<br>CROP : " + cropData.crop + "<br>CROP_TYPE : " + cropData.crop_type + "<br>expected_end_date : " + cropData.expected_end_date
                 + "<br>land_details: <br> Lat:" + cropData.land_details.latitude + "<br> Lang:" + cropData.land_details.longitude+"<input type='button' value='More' onclick='GetMoreDetails("+ifarm+")'>"
@@ -32,10 +32,10 @@ function placeMarker(location, map) {
 
     if(lDetails=="") {
         lDetails = "<br>No Data Avaliable";
-      /*  var newLocFound = tempData.farms[0];
+      /*  var newLocFound = tempData[0];
         newLocFound.land_details.latitude = latitude;
         newLocFound.land_details.longitude = langitude;
-        tempData.farms.push(newLocFound);*/
+        tempData.push(newLocFound);*/
     }
      infowindow = new google.maps.InfoWindow({
         content: lDetails
@@ -171,7 +171,7 @@ function setMapOnAll(map) {
 
 function GetMoreDetails(ifarm){
     $("#divCropDetails").remove();
-var cropData = tempData.farms[ifarm];
+var cropData = tempData[ifarm];
     $("#map").width( self.innerWidth-self.innerWidth/3);
     $("#map").css("position","absolute");
     var cropDetails="<div id='divCropDetails' style='padding-left: 10px; padding-right: 3px;float:right; overflow: auto;'></div>";
