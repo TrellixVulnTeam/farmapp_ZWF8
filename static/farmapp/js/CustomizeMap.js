@@ -196,3 +196,29 @@ var cropData = tempData[ifarm];
 function Payment_Click(){
 alert("Need To implement payment details");
 }
+
+
+  $(document).ready(function() {
+      $(".logout-profile").click(function(){
+          $(".logout-popup").css("visibility","visible");
+          $(".logout-transaction-div").css("display","none");
+          $(".logout-profile-div").css("display","block");
+      });
+      $(".profile-closeimg").click(function(){
+          $(".logout-popup").css("visibility","hidden");
+      });
+      $(".logout-transaction").click(function(){
+          $(".logout-popup").css("visibility","visible");
+          $(".logout-transaction-div").css("display","block");
+          $(".logout-profile-div").css("display","none");
+      });
+      $(".transaction-closeimg").click(function(){
+          $(".logout-popup").css("visibility","hidden");
+      });
+      $(".map-clickhere").click(function(){
+          $(".logout-right").css("visibility","visible");
+      });
+      $(".right-closeimg").click(function(){
+          $(".logout-right").css("visibility","hidden");
+      });
+  });
