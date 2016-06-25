@@ -32,19 +32,20 @@ function placeMarker(location, map) {
 
     if(lDetails=="") {
         lDetails = "<br>No Data Avaliable";
-        var newLocFound = tempData.farms[0];
+      /*  var newLocFound = tempData.farms[0];
         newLocFound.land_details.latitude = latitude;
         newLocFound.land_details.longitude = langitude;
-        tempData.farms.push(newLocFound);
+        tempData.farms.push(newLocFound);*/
     }
      infowindow = new google.maps.InfoWindow({
         content: lDetails
     });
     infowindow.open(map, marker);
 }
-var tempData = { "farms": [{ "no_of_units_left_for_fund": 10, "farming_type": "organic", "start_date": "2-6-2016", "farming_id": 1, "crop": "rice", "land_details": { "area_unit": "hector", "details": "Good yield, organic farm", "longitude": 27.00007, "village": "ramapuram", "total_area": "2", "district": "Nizamabad", "latitude": 22.0006, "mandal": "thari", "address": "near post office", "state": "Telangana" }, "crop_type": "Sonamasuri", "estimated_weight_per_unit": "20kg", "farmer_details": { "full_name": "Bugga Narsaiah", "address": "1-6-09/a,near post office", "history": "good farmer had been working hard to make living", "name": "Narsaiah", "mobile": "234988734" }, "officer_incharge": { "email": "sureshramesh@gmail.com", "full_name": "suresh ramesh", "name": "suresh", "mobile": "89274923", "qualification": "B.Sc Agriculture, 5 years of exp in farming " }, "expected_end_date": "2-8-2016" }, { "no_of_units_left_for_fund": 20, "farming_type": "organic", "start_date": "2-6-2016", "farming_id": 2, "crop": "rice", "land_details": { "area_unit": "hector", "details": "Good yield, organic farm", "longitude": 26.00007, "village": "ramapuram", "total_area": "2", "district": "Nizamabad", "latitude": 23.0006, "mandal": "thari", "address": "near post office", "state": "Telangana" }, "crop_type": "Sonamasuri", "estimated_weight_per_unit": "20kg", "farmer_details": { "full_name": "Bugga Roshiah", "address": "1-6-09/a,near post office", "history": "good farmer had been working hard to make living", "name": "Roshiah", "mobile": "234988734" }, "officer_incharge": { "email": "sureshramesh@gmail.com", "full_name": "suresh ramesh", "name": "suresh", "mobile": "89274923", "qualification": "B.Sc Agriculture, 5 years of exp in farming " }, "expected_end_date": "22-8-2016" }] };
+var tempData = {};
 
 function initMap() {
+    GetMetaData();
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -33.8688, lng: 151.2195 },
         zoom: 13,
@@ -92,7 +93,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
      }); */
 
     autocomplete.addListener('place_changed', function () {
-        infowindow.close();
+        if (infowindow) {
+            infowindow.close();
         if(marker==null)
          marker = new google.maps.Marker({
         position: location,
