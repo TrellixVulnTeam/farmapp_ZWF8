@@ -34,6 +34,9 @@ def load_userdetails(request):
 @csrf_exempt
 def load_pfdetails(request):
     return render(request, 'api/ProfileDetails.html')
+@csrf_exempt
+def load_tdetails(request):
+    return render(request, 'api/Test.html')
 
 class UserDetailsViewSet(viewsets.ModelViewSet):
 
