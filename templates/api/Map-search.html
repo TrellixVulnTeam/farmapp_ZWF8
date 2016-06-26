@@ -170,23 +170,102 @@
         </div>
 
 <div class="templatemo_footerwrapper">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="col-md-8">Copyright © 2016 <a href="http://urconnected.in/#">UR Connected</a></div>
-             <div class="col-md-4" style="float:right;">Connect with us:
-               <a href="https://www.facebook.com/URConnected.in">
-               <span style="font-size:20px; padding-left:10px; padding-right:10px" class="fa fa-facebook"></span></a>
-                <a href="https://twitter.com/URConnected_in">
-                <span style="font-size:20px; padding-right:10px" class="fa fa-twitter"></span></a>
-                <a href="https://www.linkedin.com/in/urconnected-for-a-better-future-a8ab13121">
-                <span style="font-size:20px; padding-right:10px" class="fa fa-linkedin"></span></a>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"><div class="col-md-8">Copyright &copy; 2016 <a href="#">UR Connected</a></div>
+    <div class="col-md-4" style="float:right;">Connect with us:
+    <a href="https://www.facebook.com/URConnected.in"><span class="fa fa-facebook"></span></a>
+                  <a href="https://twitter.com/URConnected_in"><span class="fa fa-twitter"></span></a>
+                  <a href="https://www.linkedin.com/in/urconnected-for-a-better-future-a8ab13121"><span class="fa fa-linkedin"></span></a>
                   <!-- <a href="#"><span class="fa fa-skype"></span></a> -->
-               </div>
-          </div>
-        </div>
-      </div>
-      </div>
+                
+              
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+<!-- scroll to specific id when click on menu -->
+// Cache selectors
+var lastId,
+    topMenu = $("#top-menu"),
+    topMenuHeight = topMenu.outerHeight() + 15,
+    // All list items
+    menuItems = topMenu.find("a"),
+    // Anchors corresponding to menu items
+    scrollItems = menuItems.map(function() {
+        var item = $($(this).attr("href"));
+        if (item.length) {
+            return item;
+        }
+    });
+// Bind click handler to menu items
+// so we can get a fancy scroll animation
+menuItems.click(function(e) {
+    var href = $(this).attr("href"),
+        offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 1;
+    $('html, body').stop().animate({
+        scrollTop: offsetTop
+    }, 300);
+    e.preventDefault();
+});
+// Bind to scroll
+$(window).scroll(function() {
+    // Get container scroll position
+    var fromTop = $(this).scrollTop() + topMenuHeight;
+    // Get id of current scroll item
+    var cur = scrollItems.map(function() {
+        if ($(this).offset().top < fromTop)
+            return this;
+    });
+    // Get the id of the current element
+    cur = cur[cur.length - 1];
+    var id = cur && cur.length ? cur[0].id : "";
+    if (lastId !== id) {
+        lastId = id;
+        // Set/remove active class
+        menuItems
+            .parent().removeClass("active")
+            .end().filter("[href=#" + id + "]").parent().addClass("active");
+    }
+});
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $(".logout-profile").click(function(){
+          $(".logout-popup").css("visibility","visible");
+          $(".logout-transaction-div").css("display","none");
+          $(".logout-profile-div").css("display","block");
+      });
+      $(".profile-closeimg").click(function(){
+          $(".logout-popup").css("visibility","hidden");
+      });
+      $(".logout-transaction").click(function(){
+          $(".logout-popup").css("visibility","visible");
+          $(".logout-transaction-div").css("display","block");
+          $(".logout-profile-div").css("display","none");
+      });
+      $(".transaction-closeimg").click(function(){
+          $(".logout-popup").css("visibility","hidden");
+      });
+      $(".map-clickhere").click(function(){
+          $(".logout-right").css("visibility","visible");
+      });
+       $(".logout-profile").click(function(){
+          $(".logout-right").css("visibility","visible");
+      });
+
+       $(".logout-transaction").click(function(){
+          $(".logout-right").css("visibility","hidden");
+      });
+      $(".right-closeimg").click(function(){
+          $(".logout-right").css("visibility","hidden");
+      });
+  });
+
+</script>
 
   </body>
  <!----> <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAcO9-JLa3E3DVA9sS7Tfxov0vYxOKOVL4&libraries=places&callback=initMap"
