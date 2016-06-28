@@ -43,12 +43,11 @@
     display: block;
     padding: 15px 5px;
     background: white; margin-bottom:20px; cursor: pointer;}
-.logout-popup, .logout-right { border: 1px solid #eaeaea; color: #fff; visibility: hidden; }
+.logout-popup, .logout-right { border: 1px solid #eaeaea; color: #fff; }
 .profile-text-left, .transaction-text-left, .right-text-left  {    float: left;
     width: 90%;
     text-align: justify;
-    padding: 10px;
-    visibility: hidden;}
+    padding: 10px;}
 .profile-closeimg, .transaction-closeimg, .right-closeimg {    float: left;
     width: 10%;
     cursor: pointer; padding-top: 10px;}
@@ -106,7 +105,6 @@
 </style>
   </head>
   <body>
-  <div>
   <div id="templatemo_home_page">
       <div class="templatemo_topbar">
         <div class="container">
@@ -164,7 +162,12 @@
       <label for="changetype-geocode">Geocodes</label>
     </div>
 <div id="map" width="100%" height="700" frameborder="0" style="border:0" allowfullscreen></div>
+
+     <div class="col-md-2 logout-right" id="divMapFarmerData">
+    <div class="logout-right-div"><div class="right-text-left">right text left here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here some text goes here </div>
     <div class="right-closeimg"><img src={% static "framapp/index_files/closebtn.png"%} style="width: 16px; height: 16px;"></div>
+    </div>
+        </div>
 
 <div class="templatemo_footerwrapper">
   <div class="container">
@@ -182,7 +185,7 @@
   </div>
 </div>
 </div>
-</div>
+
 <script>
 <!-- scroll to specific id when click on menu -->
 // Cache selectors
