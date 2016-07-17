@@ -46,28 +46,17 @@ var tempData = {};
 
 function initMap() {
     GetMetaData();
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -33.8688, lng: 151.2195},
-        zoom: 13,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+    var map = new google.maps.Map(document.getElementById('mapDiv'));
     var input = /** @type {!HTMLInputElement} */(
         document.getElementById('pac-input'));
 
-    var types = document.getElementById('type-selector');
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-    infoWindow = new google.maps.InfoWindow({map: map});
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            map.setCenter(initialLocation);
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
 
+    //var types = document.getElementById('type-selector');
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    //map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+    infoWindow = new google.maps.InfoWindow({map: map});
+
+}
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
@@ -76,7 +65,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
     google.maps.event.addListener(map, 'click', function (event) {
         if (infowindow) {
-            infowindow.close();
+            //infowindow.close();
             setMapOnAll(null);
         }
         placeMarker(event.latLng, map);
@@ -93,7 +82,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
     autocomplete.addListener('place_changed', function () {
         if (infowindow)
-            infowindow.close();
+            //infowindow.close();
         if(marker==null)
          marker = new google.maps.Marker({
         position: location,
