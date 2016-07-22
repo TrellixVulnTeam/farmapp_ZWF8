@@ -40,3 +40,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserDetails
+        fields = ('url', 'proof_number',
+                 'email', 'phone', 'address', 'proof',
+                 'gender', 'image')
+        readonly_fields = ('url', 'image')
