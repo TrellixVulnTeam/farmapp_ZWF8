@@ -17,7 +17,6 @@ from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
 from rest_framework.parsers import FormParser, MultiPartParser
 # Create your views here.
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
-from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from rest_framework import viewsets

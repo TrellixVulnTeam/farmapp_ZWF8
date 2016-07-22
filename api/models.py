@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 def upload_to(instance, filename):
-    return 'user_profile_image/{}/{}'.format(instance.user_id, filename)
+    return 'user_profile_image/{}/{}'.format(instance.user.id, filename)
 
 class UserDetails(models.Model):
     name = models.CharField(
@@ -27,6 +27,6 @@ class UserDetails(models.Model):
     )
     gender = models.CharField(max_length=25, choices=gender_)
     proof_number = models.CharField(max_length=256, null=True, blank=True)
-    image = models.ImageField(_('image'), blank=True, null=True, upload_to=upload_to)
+    image = models.ImageField(blank=True, null=True, upload_to=upload_to)
     address = models.TextField()
 
