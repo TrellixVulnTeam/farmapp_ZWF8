@@ -9,12 +9,12 @@
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-var infowindow = null, marker = null,markers=[];
+var infowindow = null, marker = null, markers = [];
 /* $(document).ready(function () {
    initMap();
 });*/
 function placeMarker(location, map) {
-     marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         position: location,
         map: map,
     });
@@ -26,18 +26,18 @@ function placeMarker(location, map) {
         var cropData = tempData[ifarm];
         if (cropData.land_details.latitude == latitude && cropData.land_details.longitude == langitude)
             lDetails = lDetails + "<br>CROP : " + cropData.crop + "<br>CROP_TYPE : " + cropData.crop_type + "<br>expected_end_date : " + cropData.expected_end_date
-                + "<br>land_details: <br> Lat:" + cropData.land_details.latitude + "<br> Lang:" + cropData.land_details.longitude+"<input type='button' value='More' onclick='GetMoreDetails("+ifarm+")'>"
+                + "<br>land_details: <br> Lat:" + cropData.land_details.latitude + "<br> Lang:" + cropData.land_details.longitude + "<input type='button' value='More' onclick='GetMoreDetails(" + ifarm + ")'>"
         ;
     }
 
-    if(lDetails=="") {
+    if (lDetails == "") {
         lDetails = "<br>No Data Avaliable";
-      /*  var newLocFound = tempData[0];
-        newLocFound.land_details.latitude = latitude;
-        newLocFound.land_details.longitude = langitude;
-        tempData.push(newLocFound);*/
+        /*  var newLocFound = tempData[0];
+          newLocFound.land_details.latitude = latitude;
+          newLocFound.land_details.longitude = langitude;
+          tempData.push(newLocFound);*/
     }
-     infowindow = new google.maps.InfoWindow({
+    infowindow = new google.maps.InfoWindow({
         content: lDetails
     });
     infowindow.open(map, marker);
@@ -54,15 +54,15 @@ function initMap() {
     //var types = document.getElementById('type-selector');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     //map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-    infoWindow = new google.maps.InfoWindow({map: map});
+    infoWindow = new google.maps.InfoWindow({ map: map });
 
-}
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
-}
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+    }
     google.maps.event.addListener(map, 'click', function (event) {
         if (infowindow) {
             //infowindow.close();
@@ -83,11 +83,11 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     autocomplete.addListener('place_changed', function () {
         if (infowindow)
             //infowindow.close();
-        if(marker==null)
-         marker = new google.maps.Marker({
-        position: location,
-        map: map,
-    });
+            if (marker == null)
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                });
         marker.setVisible(false);
         var place = autocomplete.getPlace();
         if (!place.geometry) {
@@ -147,7 +147,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     google.maps.event.addListener(markerA, 'click', function () {
         alert(this.customInfo);
     });
-    };
+};
 
 
 function setMapOnAll(map) {
@@ -158,56 +158,56 @@ function setMapOnAll(map) {
 
 
 
-function GetMoreDetails(ifarm){
+function GetMoreDetails(ifarm) {
     $("#divCropDetails").remove();
-var cropData = tempData[ifarm];
-    $("#map").width( self.innerWidth-self.innerWidth/3);
-    $("#map").css("position","absolute");
-    var cropDetails="<div id='divCropDetails' style='padding-left: 10px; padding-right: 3px;float:right; overflow: auto;'></div>";
-    var details="<table cellspacing=0>";
-     details=details+"<tr><td colspan=2><b> Farmer Details:</b></td></tr>";
-    for(var iFarmerDetails in cropData.farmer_details){
-         details=details+"<tr><td><b style='float:right'>"+iFarmerDetails+":</b></td><td> "+cropData.farmer_details[iFarmerDetails]+"</td></tr>";
+    var cropData = tempData[ifarm];
+    $("#map").width(self.innerWidth - self.innerWidth / 3);
+    $("#map").css("position", "absolute");
+    var cropDetails = "<div id='divCropDetails' style='padding-left: 10px; padding-right: 3px;float:right; overflow: auto;'></div>";
+    var details = "<table cellspacing=0>";
+    details = details + "<tr><td colspan=2><b> Farmer Details:</b></td></tr>";
+    for (var iFarmerDetails in cropData.farmer_details) {
+        details = details + "<tr><td><b style='float:right'>" + iFarmerDetails + ":</b></td><td> " + cropData.farmer_details[iFarmerDetails] + "</td></tr>";
     }
-    details=details+"<tr><td colspan=2><b> Crop Details:</b></td></tr>"+"<tr><td><b style='float:right'>start_date:</b></td><td> "+cropData.start_date+"</td></tr>";
-    details=details+"<tr><td><b style='float:right'>Expected End Date:</b></td><td> "+cropData.expected_end_date+"</td></tr>";
-    for(var iLanDetail in cropData.land_details){
-         details=details+"<tr><td ><b style='float:right'>"+iLanDetail+":</b></td><td> "+cropData.land_details[iLanDetail]+"</td></tr>";
+    details = details + "<tr><td colspan=2><b> Crop Details:</b></td></tr>" + "<tr><td><b style='float:right'>start_date:</b></td><td> " + cropData.start_date + "</td></tr>";
+    details = details + "<tr><td><b style='float:right'>Expected End Date:</b></td><td> " + cropData.expected_end_date + "</td></tr>";
+    for (var iLanDetail in cropData.land_details) {
+        details = details + "<tr><td ><b style='float:right'>" + iLanDetail + ":</b></td><td> " + cropData.land_details[iLanDetail] + "</td></tr>";
     }
-    details=details+"<tr><td><b style='float:right'>farmer type:</b></td><td> "+cropData.farming_type+"</td></tr></table>";
-   details=details+"<tr><td colspan=2 style='text-align:centre'><input type='button'   value='Invest' onclick='Payment_Click()'></td></tr></table>";
-    if($("#divMapFarmerData").find("map").length==0)
+    details = details + "<tr><td><b style='float:right'>farmer type:</b></td><td> " + cropData.farming_type + "</td></tr></table>";
+    details = details + "<tr><td colspan=2 style='text-align:centre'><input type='button'   value='Invest' onclick='Payment_Click()'></td></tr></table>";
+    if ($("#divMapFarmerData").find("map").length == 0)
         $("#map").appendTo("#divMapFarmerData");
     $("#map").after(cropDetails);
     $("#divCropDetails").append(details);
 }
 
-function Payment_Click(){
-alert("Need To implement payment details");
+function Payment_Click() {
+    alert("Need To implement payment details");
 }
 
 
-  $(document).ready(function() {
-      $(".logout-profile").click(function(){
-          $(".logout-popup").css("visibility","visible");
-          $(".logout-transaction-div").css("display","none");
-          $(".logout-profile-div").css("display","block");
-      });
-      $(".profile-closeimg").click(function(){
-          $(".logout-popup").css("visibility","hidden");
-      });
-      $(".logout-transaction").click(function(){
-          $(".logout-popup").css("visibility","visible");
-          $(".logout-transaction-div").css("display","block");
-          $(".logout-profile-div").css("display","none");
-      });
-      $(".transaction-closeimg").click(function(){
-          $(".logout-popup").css("visibility","hidden");
-      });
-      $(".map-clickhere").click(function(){
-          $(".logout-right").css("visibility","visible");
-      });
-      $(".right-closeimg").click(function(){
-          $(".logout-right").css("visibility","hidden");
-      });
-  });
+$(document).ready(function () {
+    $(".logout-profile").click(function () {
+        $(".logout-popup").css("visibility", "visible");
+        $(".logout-transaction-div").css("display", "none");
+        $(".logout-profile-div").css("display", "block");
+    });
+    $(".profile-closeimg").click(function () {
+        $(".logout-popup").css("visibility", "hidden");
+    });
+    $(".logout-transaction").click(function () {
+        $(".logout-popup").css("visibility", "visible");
+        $(".logout-transaction-div").css("display", "block");
+        $(".logout-profile-div").css("display", "none");
+    });
+    $(".transaction-closeimg").click(function () {
+        $(".logout-popup").css("visibility", "hidden");
+    });
+    $(".map-clickhere").click(function () {
+        $(".logout-right").css("visibility", "visible");
+    });
+    $(".right-closeimg").click(function () {
+        $(".logout-right").css("visibility", "hidden");
+    });
+});
