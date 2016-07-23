@@ -10,6 +10,7 @@ from django.views.generic import TemplateView
 router = routers.DefaultRouter()
 router.register(r'accounts', views.UserView, 'list')
 router.register(r'userdetails', views.UserDetailsViewSet)
+router.register(r'userdetailsmapp', views.UserProfileMultiPartParserViewSet)
 
 urlpatterns = [
 	url('^', include('django.contrib.auth.urls')),
