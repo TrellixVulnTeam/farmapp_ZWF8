@@ -30,6 +30,10 @@ def load_map(request):
     return render(request, 'api/Map-search.html')
 
 @csrf_exempt
+def map_details(request):
+    return render(request, 'api/Map-Details.html')
+
+@csrf_exempt
 def load_register(request):
     return render(request, 'api/Registration.html')
 @csrf_exempt
