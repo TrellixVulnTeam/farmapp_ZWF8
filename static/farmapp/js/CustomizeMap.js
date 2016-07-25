@@ -46,7 +46,7 @@ var tempData = {};
 
 function initMap() {
     GetMetaData();
-    var map = new google.maps.Map(document.getElementById('mapDiv'));
+    var map = new google.maps.Map(document.getElementById('map'));
     var input = /** @type {!HTMLInputElement} */(
         document.getElementById('pac-input'));
 
