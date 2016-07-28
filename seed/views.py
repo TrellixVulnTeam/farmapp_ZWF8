@@ -58,6 +58,9 @@ def post_seed_data(request):
                                     order_state=order_state
                     )
         seed_obj.save()
+        farm_id.no_of_units_for_fund = farm_id.no_of_units_for_fund - \
+                                        seed_data.get('units_count')
+        farm_id.save()
     except Exception as e:
         return Response({
                 'msg': str(e),
@@ -93,6 +96,16 @@ class SeedTransactionViewSet(NonDestructiveModelViewSet):
         """
         queryset = super().get_queryset()
         return queryset
+
+    def create(self, request, *args, **kwargs):
+        farm_id = request.data.get('farm_id')
+        farm_id_obj = Farming.objects.get(id=farm_id)
+        farm_id_obj.no_of_units_for_fund = farm_id_obj.no_of_units_for_fund - \
+                                        request.data.get('units_count')
+        farm_id_obj.save()
+        response = super().create(request, *args, **kwargs)
+
+        return response
 
 def get_seed_trans(user):
     result = []
