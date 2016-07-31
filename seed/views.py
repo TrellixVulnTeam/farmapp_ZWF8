@@ -101,7 +101,7 @@ class SeedTransactionViewSet(NonDestructiveModelViewSet):
         farm_id = request.data.get('farm_id')
         farm_id_obj = Farming.objects.get(id=farm_id)
         farm_id_obj.no_of_units_for_fund = farm_id_obj.no_of_units_for_fund - \
-                                        request.data.get('units_count')
+                                        request.data.get('no_of_units_bought')
         farm_id_obj.save()
         response = super().create(request, *args, **kwargs)
 
