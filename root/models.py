@@ -2,6 +2,9 @@ from django.db import models
 
 # Create your models here.
 
+def upload_to(instance):
+    return 'Images/{}/{}'.format(instance.__class__.__name__, instance.id)
+
 class State(models.Model):
     unique_id = models.CharField(
         max_length=256, null=True)
@@ -58,7 +61,7 @@ class Officer_Details(models.Model):
     )
     idproof_type = models.CharField(max_length=25, choices=proof)
     proof_number = models.CharField(max_length=256, null=True, blank=True)
-    image = models.ImageField(upload_to = 'uploads/%Y/%m/%d/')
+    image = models.ImageField(upload_to=upload_to)
 
 class Farmer_Details(models.Model):
     name = models.CharField(
@@ -84,7 +87,7 @@ class Farmer_Details(models.Model):
     )
     idproof_type = models.CharField(max_length=25, choices=proof)
     proof_number = models.CharField(max_length=256, null=True, blank=True)
-    image = models.ImageField(upload_to = 'uploads/%Y/%m/%d/')
+    image = models.ImageField(upload_to=upload_to)
 
 class Crop(models.Model):
     crop_name = models.CharField(
@@ -116,7 +119,7 @@ class Service_Provider(models.Model):
     since = models.DateField()
 
 class Farm_Land_Details(models.Model):
-    image = models.ImageField(upload_to = 'uploads/%Y/%m/%d/')
+    image = models.ImageField(upload_to=upload_to)
     total_area = models.FloatField()
     village = models.ForeignKey(Village)
     farmer = models.ForeignKey(Farmer_Details)
@@ -162,8 +165,8 @@ class Farming(models.Model):
 
 
 class Crop_Life_Cycle(models.Model):
-    video = models.FileField(upload_to = 'uploads/%Y/%m/%d/')
-    image = models.ImageField(upload_to = 'uploads/%Y/%m/%d/')
+    video = models.FileField(upload_to=upload_to, null=True, blank=True)
+    image = models.ImageField(upload_to=upload_to)
     description = models.TextField(null=True, blank=True)
     farm = models.ForeignKey(Farming)
     day = models.DateField()
@@ -174,8 +177,8 @@ class Crop_Life_Cycle(models.Model):
 
 
 class Yield(models.Model):
-    video = models.FileField(max_length=256, null=True, blank=True)
-    image = models.ImageField(upload_to = 'uploads/%Y/%m/%d/')
+    video = models.FileField(upload_to=upload_to, null=True, blank=True)
+    image = models.ImageField(upload_to=upload_to)
     description = models.TextField()
     farm = models.ForeignKey(Farming)
     day = models.DateField()

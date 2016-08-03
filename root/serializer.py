@@ -9,13 +9,13 @@ class FarmerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Farmer_Details
-        #fields = ('id', 'username')
+        readonly_fields = ('url', 'image')
 
 class OfficerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Officer_Details
-        #fields = ('id', 'username')
+        readonly_fields = ('url', 'image')
 
 class CropSerializer(serializers.ModelSerializer):
 
@@ -36,6 +36,7 @@ class FarmLandDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Farm_Land_Details
+        readonly_fields = ('url', 'image')
 
 class FarmingTypeSerializer(serializers.ModelSerializer):
 
@@ -56,11 +57,13 @@ class CropLifeCycleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Crop_Life_Cycle
+        readonly_fields = ('url', 'image')
 
 class YieldSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Yield
+        readonly_fields = ('url', 'image')
 
 class StateSerializer(serializers.ModelSerializer):
 
