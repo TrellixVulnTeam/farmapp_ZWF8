@@ -57,7 +57,7 @@ class UserDetailsViewSet(RetrieveModelMixin, UpdateModelMixin, viewsets.GenericV
 
     @detail_route(methods=['POST'], permission_classes=[IsAdminOrIsSelf])
     @parser_classes((FormParser, MultiPartParser,))
-    def image(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         if 'upload' in request.data:
             user_profile = self.get_object()
             user_profile.image.delete()
