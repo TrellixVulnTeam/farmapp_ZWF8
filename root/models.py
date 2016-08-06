@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-def upload_to(instance):
+def upload_to(instance, change):
     return 'Images/{}/{}'.format(instance.__class__.__name__, instance.id)
 
 class State(models.Model):
