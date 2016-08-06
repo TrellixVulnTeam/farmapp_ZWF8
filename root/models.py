@@ -165,7 +165,7 @@ class Farming(models.Model):
 
 
 class Crop_Life_Cycle(models.Model):
-    video = models.FileField(upload_to=upload_to, null=True, blank=True)
+    video = models.FileField(null=True, blank=True)
     image = models.ImageField(upload_to=upload_to)
     description = models.TextField(null=True, blank=True)
     farm = models.ForeignKey(Farming)
@@ -177,7 +177,7 @@ class Crop_Life_Cycle(models.Model):
 
 
 class Yield(models.Model):
-    video = models.FileField(upload_to=upload_to, null=True, blank=True)
+    video = models.FileField(null=True, blank=True)
     image = models.ImageField(upload_to=upload_to)
     description = models.TextField()
     farm = models.ForeignKey(Farming)
