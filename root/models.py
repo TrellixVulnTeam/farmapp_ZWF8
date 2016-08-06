@@ -2,8 +2,9 @@ from django.db import models
 
 # Create your models here.
 
-def upload_to(instance, change):
-    return 'Images/{}/{}'.format(instance.__class__.__name__, instance.id)
+def upload_to(instance, filename):
+    return 'Images/{}/{}/{}'.format(instance.__class__.__name__, 
+                            instance.farm.id, filename)
 
 class State(models.Model):
     unique_id = models.CharField(

@@ -70,29 +70,8 @@ class OfficerViewSet(NonDestructiveModelViewSet):
     search_fields = ('name',)
     filter_fields = ('name',)
     ordering_fields = '__all__'
+    parser_classes = (MultiPartParser, FormParser,)
 
-    def get_queryset(self):
-        """
-            Default:  Send All.
-            unmapped = true => Send filtered.
-        """
-        queryset = super().get_queryset()
-        return queryset
-
-    @transaction.atomic
-    def create(self, request, *args, **kwargs):
-        status = 'Success'
-        try:
-            off_detail = Officer_Details.objects.create(**request.data)
-            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
-            file_upload(request, 'image', os.path.join(path, file_name))
-            off_detail['image'] = file_name
-            off_detail.save()
-        except Exception as e:
-            status = 'Error'
-
-        return Response({
-            'status': status})
 
 class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
 
@@ -111,33 +90,8 @@ class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
     serializer_class = FarmLandDetailsSerializer
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
-    search_fields = ('village__name',)
-    filter_fields = ('village__name',)
-    ordering_fields = '__all__'
+    parser_classes = (MultiPartParser, FormParser,)
 
-    def get_queryset(self):
-        """
-            Default:  Send All.
-            unmapped = true => Send filtered.
-        """
-        queryset = super().get_queryset()
-
-        return queryset
-
-    @transaction.atomic
-    def create(self, request, *args, **kwargs):
-        status = 'Success'
-        try:
-            off_detail = Farm_Land_Details.objects.create(**request.data)
-            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
-            file_upload(request, 'image', os.path.join(path, file_name))
-            off_detail['image'] = file_name
-            off_detail.save()
-        except Exception as e:
-            status = 'Error'
-
-        return Response({
-            'status': status})
 
 class FarmingViewSet(NonDestructiveModelViewSet):
 
@@ -209,35 +163,7 @@ class YieldViewSet(NonDestructiveModelViewSet):
     serializer_class = YieldSerializer
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
-    search_fields = ('farm__id',)
-    filter_fields = ('farm__id',)
-    ordering_fields = '__all__'
-
-    def get_queryset(self):
-        """
-            Default:  Send All.
-            unmapped = true => Send filtered.
-        """
-        queryset = super().get_queryset()
-
-        return queryset
-
-    @transaction.atomic
-    def create(self, request, *args, **kwargs):
-        status = 'Success'
-        try:
-            off_detail = Yield.objects.create(**request.data)
-            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
-            file_upload(request, 'image', os.path.join(path, file_name))
-            off_detail['image'] = file_name
-            file_upload(request, 'video', os.path.join(path, file_name))
-            off_detail['video'] = file_name
-            off_detail.save()
-        except Exception as e:
-            status = 'Error'
-
-        return Response({
-            'status': status})
+    parser_classes = (MultiPartParser, FormParser,)
 
 
 class FarmerViewSet(NonDestructiveModelViewSet):
@@ -257,32 +183,8 @@ class FarmerViewSet(NonDestructiveModelViewSet):
     serializer_class = FarmerSerializer
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
-    search_fields = ('name',)
-    filter_fields = ('name',)
-    ordering_fields = '__all__'
+    parser_classes = (MultiPartParser, FormParser,)
 
-    def get_queryset(self):
-        """
-            Default:  Send All.
-            unmapped = true => Send filtered.
-        """
-        queryset = super().get_queryset()
-        return queryset
-
-    @transaction.atomic
-    def create(self, request, *args, **kwargs):
-        status = 'Success'
-        try:
-            off_detail = Farmer_Details.objects.create(**request.data)
-            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
-            file_upload(request, 'image', os.path.join(path, file_name))
-            off_detail['image'] = file_name
-            off_detail.save()
-        except Exception as e:
-            status = 'Error'
-
-        return Response({
-            'status': status})
 
 # @login_required
 # @csrf_exempt
