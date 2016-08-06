@@ -171,7 +171,7 @@ class Crop_Life_Cycle(models.Model):
     farm = models.ForeignKey(Farming)
     day = models.DateField()
     day_count = models.IntegerField()
-    service = models.ForeignKey(Service_Provider)
+    service = models.ForeignKey(Service_Provider, null=True, blank=True)
     cost_service = models.FloatField()
     cost_for_day = models.FloatField()
 
