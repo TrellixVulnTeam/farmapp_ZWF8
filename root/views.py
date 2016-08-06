@@ -20,11 +20,22 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import detail_route, parser_classes
+from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
+from rest_framework.parsers import FormParser, MultiPartParser
+# Create your views here.
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
 from .models import *
 from seed.views import get_seed_trans
 from fruit.views import get_fruit_trans
 from .serializer import *
 from farmapp.settings import FILE_PATH as path
+from api.permissions import IsStaffOrTargetUser, IsAdminOrIsSelf
+
 
 
 class NonDestructiveModelViewSet(viewsets.ModelViewSet):
@@ -175,34 +186,11 @@ class CropLifeCycleViewSet(NonDestructiveModelViewSet):
     serializer_class = CropLifeCycleSerializer
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
-    search_fields = ('farm__id',)
-    filter_fields = ('farm__id',)
-    ordering_fields = '__all__'
+    parser_classes = (MultiPartParser, FormParser,)
 
-    def get_queryset(self):
-        """
-            Default:  Send All.
-            unmapped = true => Send filtered.
-        """
-        queryset = super().get_queryset()
-        return queryset
-
-    @transaction.atomic
-    def create(self, request, *args, **kwargs):
-        status = 'Success'
-        try:
-            off_detail = Crop_Life_Cycle.objects.create(**request.data)
-            file_name = "%s-%s" % (off_detail.get('id'),off_detail.get('name'))
-            file_upload(request, 'image', os.path.join(path, file_name))
-            off_detail['image'] = file_name
-            file_upload(request, 'video', os.path.join(path, file_name))
-            off_detail['video'] = file_name
-            off_detail.save()
-        except Exception as e:
-            status = 'Error'
-
-        return Response({
-            'status': status})
+    # def perform_create(self, serializer):
+    #     serializer.save(owner=self.request.user,
+    #                    datafile=self.request.data.get('datafile'))
 
 class YieldViewSet(NonDestructiveModelViewSet):
 
