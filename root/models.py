@@ -62,7 +62,7 @@ class Officer_Details(models.Model):
     )
     idproof_type = models.CharField(max_length=25, choices=proof)
     proof_number = models.CharField(max_length=256, null=True, blank=True)
-    image = models.ImageField(upload_to=upload_to)
+    image = models.ImageField(upload_to="officer-profiles")
 
 class Farmer_Details(models.Model):
     name = models.CharField(
@@ -88,7 +88,7 @@ class Farmer_Details(models.Model):
     )
     idproof_type = models.CharField(max_length=25, choices=proof)
     proof_number = models.CharField(max_length=256, null=True, blank=True)
-    image = models.ImageField(upload_to=upload_to)
+    image = models.ImageField(upload_to="farmer-profiles")
 
 class Crop(models.Model):
     crop_name = models.CharField(
@@ -120,7 +120,7 @@ class Service_Provider(models.Model):
     since = models.DateField()
 
 class Farm_Land_Details(models.Model):
-    image = models.ImageField(upload_to=upload_to)
+    image = models.ImageField(upload_to="farmland-images")
     total_area = models.FloatField()
     village = models.ForeignKey(Village)
     farmer = models.ForeignKey(Farmer_Details)
@@ -166,8 +166,8 @@ class Farming(models.Model):
 
 
 class Crop_Life_Cycle(models.Model):
-    video = models.FileField(null=True, blank=True)
-    image = models.ImageField(upload_to=upload_to)
+    video = models.FileField(upload_to="lifecycle-videos", null=True, blank=True)
+    image = models.ImageField(upload_to="lifecycle-images", null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     farm = models.ForeignKey(Farming)
     day = models.DateField()
@@ -178,8 +178,8 @@ class Crop_Life_Cycle(models.Model):
 
 
 class Yield(models.Model):
-    video = models.FileField(null=True, blank=True)
-    image = models.ImageField(upload_to=upload_to)
+    video = models.FileField(upload_to="yield-videos", null=True, blank=True)
+    image = models.ImageField(upload_to="yield-images", null=True, blank=True)
     description = models.TextField()
     farm = models.ForeignKey(Farming)
     day = models.DateField()
