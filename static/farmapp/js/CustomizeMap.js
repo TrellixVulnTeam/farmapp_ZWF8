@@ -24,7 +24,7 @@ function placeMarker(location, map) {
         if (ifarm > 0)
             continue;
         var cropData = tempData[ifarm];
-        if (cropData.land_details.latitude == latitude && cropData.land_details.longitude == langitude)
+        if (parseInt(cropData.land_details.latitude) == parseInt(latitude) && parseInt(cropData.land_details.longitude) == parseInt(langitude))
             lDetails = lDetails + "<br>CROP : " + cropData.crop + "<br>CROP_TYPE : " + cropData.crop_type + "<br>expected_end_date : " + cropData.expected_end_date
                 + "<br>land_details: <br> Lat:" + cropData.land_details.latitude + "<br> Lang:" + cropData.land_details.longitude + "<input type='button' value='More' onclick='GetMoreDetails(" + ifarm + ")'>"
         ;
@@ -46,7 +46,9 @@ var tempData = {};
 
 function initMap() {
     GetMetaData();
-    var map = new google.maps.Map(document.getElementById('map'));
+   var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 17.705245, lng: 78.22386}});
     var input = /** @type {!HTMLInputElement} */(
         document.getElementById('pac-input'));
 
@@ -64,10 +66,12 @@ function initMap() {
                               'Error: Your browser doesn\'t support geolocation.');
     }
     google.maps.event.addListener(map, 'click', function (event) {
+        $("#map").width(self.innerWidth);
         if (infowindow) {
             //infowindow.close();
             setMapOnAll(null);
         }
+         $("#divCropDetails").remove();
         placeMarker(event.latLng, map);
     });
 
@@ -81,6 +85,8 @@ function initMap() {
      }); */
 
     autocomplete.addListener('place_changed', function () {
+        $("#map").width(self.innerWidth);
+         $("#divCropDetails").remove();
         if (infowindow)
             //infowindow.close();
             if (marker == null)
@@ -88,6 +94,7 @@ function initMap() {
                     position: location,
                     map: map,
                 });
+
         marker.setVisible(false);
         var place = autocomplete.getPlace();
         if (!place.geometry) {

@@ -39,7 +39,7 @@ function GetMetaData(){
     });
 }
 var g_UserDetails={};
-function GetMetaData(){
+function GetUserData(){
      $.ajax({
             url: "http://urconnected.in/root/getmeta/?format=json",
             type: "GET",
