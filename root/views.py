@@ -268,8 +268,8 @@ class FarmerViewSet(NonDestructiveModelViewSet):
 #     }
 #     return HttpResponse(json.dumps(resp), content_type='application/json')
 
-@login_required
-@csrf_exempt
+# @login_required
+# @csrf_exempt
 @api_view(['GET', 'POST', ])
 def get_meta(request):
     result = []
