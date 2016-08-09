@@ -185,7 +185,7 @@ function GetMoreDetails(ifarm) {
     details = details + "<tr><td colspan=2 style='text-align:centre'><input type='button'   value='Invest' onclick='Payment_Click()'></td></tr></table>";
     if ($("#divMapFarmerData").find("map").length == 0)
         $("#map").appendTo("#divMapFarmerData");
-    $("#map").after(cropDetails);
+    parent.frames[0].document.getElementById("divAllDetails").appendChild(cropDetails);
     $("#divCropDetails").append(details);
 }
 
