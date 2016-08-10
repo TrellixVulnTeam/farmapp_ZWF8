@@ -171,7 +171,7 @@ function GetMoreDetails(ifarm) {
     //$("#map").width(self.innerWidth - self.innerWidth / 3);
     //$("#map").css("position", "absolute");
     // var cropDetails = "<div id='divCropDetails' style='padding-left: 10px; padding-right: 3px;float:right; overflow: auto;'></div>";
-    var details = "<table cellspacing=0>";
+    var details = "<table cellspacing=0 id="tblData">";
     details = details + "<tr><td colspan=2><b> Farmer Details:</b></td></tr>";
     for (var iFarmerDetails in cropData.farmer_details) {
         details = details + "<tr><td><b style='float:right'>" + iFarmerDetails + ":</b></td><td> " + cropData.farmer_details[iFarmerDetails] + "</td></tr>";
@@ -185,6 +185,7 @@ function GetMoreDetails(ifarm) {
     details = details + "<tr><td colspan=2 style='text-align:centre'><input type='button'   value='Invest' onclick='Payment_Click()'></td></tr></table>";
 
    // $("#divCropDetails").append(details);
+    $(parent.document.getElementById("divAllDetails")).find("table").remove();
    $(parent.document.getElementById("divAllDetails")).append(details);
      $(parent.document.getElementById("divFarmerDetails")).css("visibility","visible");
 
