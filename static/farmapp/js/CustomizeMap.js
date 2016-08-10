@@ -71,7 +71,7 @@ function initMap() {
             //infowindow.close();
             setMapOnAll(null);
         }
-         $("#divCropDetails").remove();
+
         placeMarker(event.latLng, map);
     });
 
@@ -85,8 +85,7 @@ function initMap() {
      }); */
 
     autocomplete.addListener('place_changed', function () {
-        $("#map").width(self.innerWidth);
-         $("#divCropDetails").remove();
+
         if (infowindow)
             //infowindow.close();
             if (marker == null)
@@ -184,8 +183,7 @@ function GetMoreDetails(ifarm) {
     }
     details = details + "<tr><td><b style='float:right'>farmer type:</b></td><td> " + cropData.farming_type + "</td></tr></table>";
     details = details + "<tr><td colspan=2 style='text-align:centre'><input type='button'   value='Invest' onclick='Payment_Click()'></td></tr></table>";
-    if ($("#divMapFarmerData").find("map").length == 0)
-        $("#map").appendTo("#divMapFarmerData");
+
    // $("#divCropDetails").append(details);
    $(parent.document.getElementById("divAllDetails")).append(details);
      $(parent.document.getElementById("divFarmerDetails")).css("visibility","visible");
