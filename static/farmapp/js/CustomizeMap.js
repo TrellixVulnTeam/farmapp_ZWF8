@@ -166,11 +166,12 @@ function setMapOnAll(map) {
 
 
 function GetMoreDetails(ifarm) {
+
     $("#divCropDetails").remove();
     var cropData = tempData[ifarm];
     $("#map").width(self.innerWidth - self.innerWidth / 3);
     $("#map").css("position", "absolute");
-    var cropDetails = "<div id='divCropDetails' style='padding-left: 10px; padding-right: 3px;float:right; overflow: auto;'></div>";
+    // var cropDetails = "<div id='divCropDetails' style='padding-left: 10px; padding-right: 3px;float:right; overflow: auto;'></div>";
     var details = "<table cellspacing=0>";
     details = details + "<tr><td colspan=2><b> Farmer Details:</b></td></tr>";
     for (var iFarmerDetails in cropData.farmer_details) {
@@ -185,8 +186,9 @@ function GetMoreDetails(ifarm) {
     details = details + "<tr><td colspan=2 style='text-align:centre'><input type='button'   value='Invest' onclick='Payment_Click()'></td></tr></table>";
     if ($("#divMapFarmerData").find("map").length == 0)
         $("#map").appendTo("#divMapFarmerData");
-    parent.frames[0].document.getElementById("divAllDetails").appendChild(cropDetails);
-    $("#divCropDetails").append(details);
+   // $("#divCropDetails").append(details);
+   $(parent.document.getElementById("divAllDetails")).appendChild(details);
+
 }
 
 function Payment_Click() {
