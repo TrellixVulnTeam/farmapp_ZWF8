@@ -71,7 +71,7 @@ function initMap() {
             //infowindow.close();
             setMapOnAll(null);
         }
-         $("#divCropDetails").remove();
+
         placeMarker(event.latLng, map);
     });
 
@@ -85,8 +85,7 @@ function initMap() {
      }); */
 
     autocomplete.addListener('place_changed', function () {
-        $("#map").width(self.innerWidth);
-         $("#divCropDetails").remove();
+
         if (infowindow)
             //infowindow.close();
             if (marker == null)
@@ -166,12 +165,13 @@ function setMapOnAll(map) {
 
 
 function GetMoreDetails(ifarm) {
-    $("#divCropDetails").remove();
+
+    //$("#divCropDetails").remove();
     var cropData = tempData[ifarm];
-    $("#map").width(self.innerWidth - self.innerWidth / 3);
-    $("#map").css("position", "absolute");
-    var cropDetails = "<div id='divCropDetails' style='padding-left: 10px; padding-right: 3px;float:right; overflow: auto;'></div>";
-    var details = "<table cellspacing=0>";
+    //$("#map").width(self.innerWidth - self.innerWidth / 3);
+    //$("#map").css("position", "absolute");
+    // var cropDetails = "<div id='divCropDetails' style='padding-left: 10px; padding-right: 3px;float:right; overflow: auto;'></div>";
+    var details = "<table cellspacing=0 id='tblData'>";
     details = details + "<tr><td colspan=2><b> Farmer Details:</b></td></tr>";
     for (var iFarmerDetails in cropData.farmer_details) {
         details = details + "<tr><td><b style='float:right'>" + iFarmerDetails + ":</b></td><td> " + cropData.farmer_details[iFarmerDetails] + "</td></tr>";
@@ -181,12 +181,14 @@ function GetMoreDetails(ifarm) {
     for (var iLanDetail in cropData.land_details) {
         details = details + "<tr><td ><b style='float:right'>" + iLanDetail + ":</b></td><td> " + cropData.land_details[iLanDetail] + "</td></tr>";
     }
-    details = details + "<tr><td><b style='float:right'>farmer type:</b></td><td> " + cropData.farming_type + "</td></tr></table>";
-    details = details + "<tr><td colspan=2 style='text-align:centre'><input type='button'   value='Invest' onclick='Payment_Click()'></td></tr></table>";
-    if ($("#divMapFarmerData").find("map").length == 0)
-        $("#map").appendTo("#divMapFarmerData");
-    parent.frames[0].document.getElementById("divAllDetails").appendChild(cropDetails);
-    $("#divCropDetails").append(details);
+    details = details + "<tr><td><b style='float:right'>farmer type:</b></td><td> " + cropData.farming_type + "</td></tr>";
+    details = details + "<tr><td colspan=2 style='text-align:centre'><input type='button' style='background-color:gray' value='Invest' onclick='Payment_Click()'></td></tr></table>";
+
+   // $("#divCropDetails").append(details);
+    $(parent.document.getElementById("tblData")).remove();
+   $(parent.document.getElementById("divAllDetails")).append(details);
+     $(parent.document.getElementById("divFarmerDetails")).css("visibility","visible");
+
 }
 
 function Payment_Click() {
