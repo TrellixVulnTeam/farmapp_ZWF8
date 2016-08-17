@@ -24,6 +24,6 @@ urlpatterns = [
 	url(r'^profiledetails/$',views.load_pfdetails),
 	url(r'^Test/$',views.load_tdetails),
 	url(r'^api/', include(router.urls)),
-	url(r'^api-token-auth/', obtain_jwt_token),
+	url(r'^token-auth/', obtain_jwt_token),
 
 ]
