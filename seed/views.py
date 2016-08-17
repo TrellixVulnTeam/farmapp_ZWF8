@@ -21,6 +21,8 @@ from rest_framework import exceptions, filters, generics, mixins, status, viewse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from .serializer import *
@@ -87,6 +89,8 @@ class SeedTransactionViewSet(NonDestructiveModelViewSet):
     serializer_class = SeedTransactionSerializer
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
+    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
+    authentication_classes = (JSONWebTokenAuthentication, )
     ordering_fields = '__all__'
 
     def get_queryset(self):

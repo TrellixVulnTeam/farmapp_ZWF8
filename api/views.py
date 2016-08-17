@@ -20,7 +20,8 @@ from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from .serializer import *
 from .models import *
 from .permissions import IsStaffOrTargetUser, IsAdminOrIsSelf
@@ -50,7 +51,8 @@ class UserDetailsViewSet(RetrieveModelMixin, UpdateModelMixin, viewsets.GenericV
 
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
-    permission_classes = (IsAdminOrIsSelf,)
+    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
+    authentication_classes = (JSONWebTokenAuthentication, )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -73,7 +75,8 @@ class UserDetailsViewSet(RetrieveModelMixin, UpdateModelMixin, viewsets.GenericV
 class UserProfileMultiPartParserViewSet(RetrieveModelMixin, UpdateModelMixin, viewsets.GenericViewSet):
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
-    permission_classes = (IsAdminOrIsSelf,)
+    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
+    authentication_classes = (JSONWebTokenAuthentication, )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
