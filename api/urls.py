@@ -1,8 +1,6 @@
 from django.conf.urls import url
 from django.conf.urls import include
 from django.contrib.auth import views
-# from rest_framework.authtoken.views import obtain_auth_token
-from rest_framework_jwt.views import obtain_jwt_token
 from . import views
 
 from django.conf.urls import patterns, url, include
@@ -24,6 +22,5 @@ urlpatterns = [
 	url(r'^profiledetails/$',views.load_pfdetails),
 	url(r'^Test/$',views.load_tdetails),
 	url(r'^api/', include(router.urls)),
-	url(r'^token-auth/', obtain_jwt_token),
 
 ]

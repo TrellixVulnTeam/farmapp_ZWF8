@@ -95,21 +95,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'farmapp.wsgi.application'
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': (
-        'rest_framework.filters.DjangoFilterBackend',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-}
-
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
@@ -174,11 +159,11 @@ AWS_ACCESS_KEY_ID = 'AKIAJDBS2K2IDR5QBPPA'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'farmapp-images'
 
-#AES_KEY = 'ac054e9fb1c9f7ad359392457e3e7e95'
+AES_KEY = 'ac054e9fb1c9f7ad359392457e3e7e95'
 AWS_HEADERS = {
     'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
     'Cache-Control': 'max-age=86400',
 }
-AWS_S3_CUSTOM_DOMAIN = '%s.s3-website.ap-south-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 CORS_ORIGIN_ALLOW_ALL = True

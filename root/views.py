@@ -28,8 +28,7 @@ from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework.permissions import AllowAny
 from .models import *
 from seed.views import get_seed_trans
 from fruit.views import get_fruit_trans
@@ -72,8 +71,6 @@ class OfficerViewSet(NonDestructiveModelViewSet):
     filter_fields = ('name',)
     ordering_fields = '__all__'
     parser_classes = (MultiPartParser, FormParser,)
-    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
-    authentication_classes = (JSONWebTokenAuthentication, )
 
 
 class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
@@ -94,8 +91,6 @@ class FarmLandDetailsViewSet(NonDestructiveModelViewSet):
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
     parser_classes = (MultiPartParser, FormParser,)
-    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
-    authentication_classes = (JSONWebTokenAuthentication, )
 
 
 class FarmingViewSet(NonDestructiveModelViewSet):
@@ -117,8 +112,6 @@ class FarmingViewSet(NonDestructiveModelViewSet):
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
     search_fields = ('farmer_id__name',)
     filter_fields = ('farmer_id__name',)
-    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
-    authentication_classes = (JSONWebTokenAuthentication, )
     ordering_fields = '__all__'
 
     def get_queryset(self):
@@ -148,8 +141,6 @@ class CropLifeCycleViewSet(NonDestructiveModelViewSet):
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
     parser_classes = (MultiPartParser, FormParser,)
-    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
-    authentication_classes = (JSONWebTokenAuthentication, )
 
     # def perform_create(self, serializer):
     #     serializer.save(owner=self.request.user,
@@ -173,8 +164,6 @@ class YieldViewSet(NonDestructiveModelViewSet):
     filter_backends = (filters.SearchFilter,
                        filters.DjangoFilterBackend, filters.OrderingFilter,)
     parser_classes = (MultiPartParser, FormParser,)
-    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
-    authentication_classes = (JSONWebTokenAuthentication, )
 
 
 class FarmerViewSet(NonDestructiveModelViewSet):
@@ -357,8 +346,6 @@ class CropViewSet(NonDestructiveModelViewSet):
     serializer_class = CropSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
     search_fields = ('crop_name',)
-    permission_classes = (IsAdminOrIsSelf, IsAuthenticated, )
-    authentication_classes = (JSONWebTokenAuthentication, )
 
 class CropTypeViewSet(NonDestructiveModelViewSet):
 
