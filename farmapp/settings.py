@@ -23,7 +23,7 @@ FILE_PATH = '/var/www/files'
 SECRET_KEY = '-!i*puwozh$=y)ohl(ju*xx5=s@6d6)8uwfpw(s15lt6#@)72+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -174,11 +174,11 @@ AWS_ACCESS_KEY_ID = 'AKIAJDBS2K2IDR5QBPPA'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'farmapp-images'
 
-AES_KEY = 'ac054e9fb1c9f7ad359392457e3e7e95'
+#AES_KEY = 'ac054e9fb1c9f7ad359392457e3e7e95'
 AWS_HEADERS = {
     'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
     'Cache-Control': 'max-age=86400',
 }
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = '%s.s3-website.ap-south-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 CORS_ORIGIN_ALLOW_ALL = True
