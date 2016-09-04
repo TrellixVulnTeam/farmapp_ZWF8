@@ -156,11 +156,7 @@ STATICFILES_DIRS = [
 
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAJDBS2K2IDR5QBPPA'
-AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'farmapp-bucket'
-
-AES_KEY = 'ac054e9fb1c9f7ad359392457e3e7e95'
 AWS_HEADERS = {
     'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
     'Cache-Control': 'max-age=86400',
