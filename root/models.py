@@ -167,7 +167,7 @@ class Farming(models.Model):
 
 class Crop_Life_Cycle(models.Model):
     video = models.FileField(upload_to="lifecycle-videos", null=True, blank=True)
-    image = models.ImageField(upload_to="userprfile", null=True, blank=True)
+    image = models.ImageField(upload_to="lifecycle-images", null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     farm = models.ForeignKey(Farming)
     day = models.DateField()
