@@ -13,14 +13,15 @@ router.register(r'userdetails', views.UserDetailsViewSet)
 router.register(r'userdetailsmapp', views.UserProfileMultiPartParserViewSet)
 
 urlpatterns = [
-	url('^', include('django.contrib.auth.urls')),
-	url(r'^$', TemplateView.as_view(template_name='api/index.html')),
-	url(r'^register/$',views.load_register),
-	url(r'^viewmap/$',views.load_map),
-	url(r'^userdetails/$',views.load_map),
-	url(r'^mapdetails/$',views.map_details),
-	url(r'^profiledetails/$',views.load_pfdetails),
-	url(r'^Test/$',views.load_tdetails),
-	url(r'^api/', include(router.urls)),
+    url('^', include('django.contrib.auth.urls')),
+    url(r'^$', TemplateView.as_view(template_name='api/index.html')),
+    url(r'^register/$',views.load_register),
+    url(r'^viewmap/$',views.load_map),
+    url(r'^userdetails/$',views.load_map),
+    url(r'^mapdetails/$',views.map_details),
+    url(r'^profiledetails/$',views.load_pfdetails),
+    url(r'^Test/$',views.load_tdetails),
+    url(r'^api/', include(router.urls)),
+    url(r'^auth-token/', views.create_auth_token),
 
 ]

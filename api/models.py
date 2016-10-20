@@ -27,6 +27,6 @@ class UserDetails(models.Model):
     )
     gender = models.CharField(max_length=25, choices=gender_)
     proof_number = models.CharField(max_length=256, null=True, blank=True)
-    image = models.ImageField(blank=True, null=True, upload_to="user-profiles")
+    image = models.ImageField(blank=True, null=True, upload_to="userprfiles")
     address = models.TextField()
 
